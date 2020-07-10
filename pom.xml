@@ -29,7 +29,7 @@
         <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
 
         <!-- Cargo maven plugin -->
-        <cargo-maven2-plugin.version>1.7.13</cargo-maven2-plugin.version>
+        <cargo-maven2-plugin.version>1.7.15</cargo-maven2-plugin.version>
 
         <!-- Jakarta EE API -->
         <jakartaee-api.version>9.0.0-RC2</jakartaee-api.version>
