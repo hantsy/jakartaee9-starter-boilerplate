@@ -38,14 +38,14 @@ Here we will use Glassfish v6.0.0.M1 as target runtime , and manually upgrade my
 
 ### Getting Glassfish v6.0.0.M1
 
-Download [Glassfish v6.0.0.M1](https://eclipse-ee4j.github.io/glassfish/download), extract files into your discs.
+Download [Glassfish v6.0.0.M1](https://eclipse-ee4j.github.io/glassfish/download) and extract files into your discs.
 
-Open your terminal, and enter the *glassfish6/bin* folder, and start up Glassfish manually by executing the following command.
+Open your terminal, and switch to the *glassfish6/bin* folder, and start up Glassfish manually by executing the following command.
 
 ```bash
 asadmin start-domain domain1
 ```
-### Clean up the Jakarta EE 8 codes
+### Clean up the Jakarta EE 8 Codes
 
 Now let's clean up the codes of [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter)  and migrate to Jakarta EE 9 step by step. 
 
@@ -58,27 +58,27 @@ Now let's clean up the codes of [Jakarta EE 8 starter](https://github.com/hantsy
 
 ### Running the application
 
-At this moment when I am writing this post, you have to use Java 8 to build and run the application.
+At this moment when I am writing this post, you have to use Java 8 to build and run the application on Glassfish 6.0M1.
 
 Make sure you are using Java 8 . 
 
 ```bash
 >java -version
-openjdk version "11.0.7" 2020-04-14
-OpenJDK Runtime Environment AdoptOpenJDK (build 11.0.7+10)
-OpenJDK 64-Bit Server VM AdoptOpenJDK (build 11.0.7+10, mixed mode)
+openjdk version "1.8.0_252"
+OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_252-b09)
+OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.252-b09, mixed mode)
 ```
 
-> We will switch to Java 11 as default JVM when Glassfish v6 is ready for Java  11, other Jakarta EE providers are compatible with Java 11 for a long time.
+> We will switch to Java 11 as default JVM when Glassfish v6 is ready for Java  11, the products from other Jakarta EE providers, such as Payara Server, WildFly, Open Liberty, etc. are compatible with Java 11 for a long time.
 
-Next, follow these steps to deploy the sample application on the running Glassfish server.
+Next, follow these steps to deploy our sample application on the running Glassfish server.
 
 * Run the following command to package the application into a war.
   
    ```bash
    mvn clean package
    ```
-* Copy *target/jakartaee9-starter-boilerplate.war* to *glassfish6/glassfish/domains/domin1/autodeploy* folder. The war archive will be tracked by Glassfish and deployed automatically. When it is done there is *jakartaee9-starter-boilerplate.war_deployed* generated in the same folder.
+* Copy *target/jakartaee9-starter-boilerplate.war* to *glassfish6/glassfish/domains/domin1/autodeploy* folder. The war archive will be tracked by Glassfish and deployed automatically. When it is done there is *jakartaee9-starter-boilerplate.war_deployed*  lock file generated in the same folder.
 * Test the sample endpoints by curl command.
 
    ```bash
