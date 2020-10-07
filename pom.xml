@@ -32,7 +32,7 @@
         <cargo-maven2-plugin.version>1.8.2</cargo-maven2-plugin.version>
 
         <!-- Jakarta EE API -->
-        <jakartaee-api.version>9.0.0-RC2</jakartaee-api.version>
+        <jakartaee-api.version>9.0.0-RC3</jakartaee-api.version>
 
         <!-- TODO: update Arquillian BOM -->
         <arquillian-bom.version>1.6.0.Final</arquillian-bom.version>
