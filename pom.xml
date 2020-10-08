@@ -67,7 +67,7 @@
         <liberty.runtime.version>20.0.0.1</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.2.3</liberty-maven-plugin.version>
+        <liberty-maven-plugin.version>3.2.4</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
         <cxf.version>3.3.5</cxf.version>
 
