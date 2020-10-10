@@ -24,29 +24,29 @@
 
         <!-- Official Maven Plugins -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-war-plugin.version>3.3.0</maven-war-plugin.version>
+        <maven-war-plugin.version>3.3.1</maven-war-plugin.version>
         <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
 
         <!-- Cargo maven plugin -->
-        <cargo-maven2-plugin.version>1.7.13</cargo-maven2-plugin.version>
+        <cargo-maven2-plugin.version>1.8.2</cargo-maven2-plugin.version>
 
         <!-- Jakarta EE API -->
-        <jakartaee-api.version>9.0.0-RC2</jakartaee-api.version>
+        <jakartaee-api.version>9.0.0-RC3</jakartaee-api.version>
 
         <!-- TODO: update Arquillian BOM -->
         <arquillian-bom.version>1.6.0.Final</arquillian-bom.version>
 
         <!-- Test Utilities -->
         <junit.version>4.13</junit.version>
-        <mockito.version>3.3.3</mockito.version>
+        <mockito.version>3.5.13</mockito.version>
         <json-path.version>2.4.0</json-path.version>
         <awaitility.version>4.0.3</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
         <jsonassert.version>1.5.0</jsonassert.version>
-        <assertj.version>3.16.1</assertj.version>
+        <assertj.version>3.17.2</assertj.version>
 
         <!-- Glassfish server -->
         <glassfish.version>6.0.0-M1</glassfish.version>
@@ -71,6 +71,7 @@
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.2.3</liberty-maven-plugin.version>
         <!-- Jakarta EE 9 support is in progress, see: https://github.com/OpenLiberty/liberty-arquillian/issues/71 -->
+        <liberty-maven-plugin.version>3.2.4</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
         <cxf.version>3.3.5</cxf.version>
 
