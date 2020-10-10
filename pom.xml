@@ -14,10 +14,11 @@
     <properties>
         <!-- Global Maven settings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
-        <!-- Set java compiler version to 11, but Java 11 is an optional requirement in Jakarta EE 9-->
+
+        <!-- Set java compiler version to 11-->
         <!-- <maven.compiler.release>11</maven.compiler.release>-->
 
+        <!--Java 11 is an optional requirement in Jakarta EE 9-->
         <java.version>1.8</java.version>
         <!-- The default value changed to `false` since maven-war-plugin 3.0.0 -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -76,7 +77,8 @@
         <cxf.version>3.3.5</cxf.version>
 
         <!-- By default, skip tests -->
-        <skipTests>true</skipTests>
+        <skip.unit.tests>true</skip.unit.tests>
+        <skip.integration.tests>true</skip.integration.tests>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -218,15 +220,18 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <skipTests>${skipTests}</skipTests>
+                    <skipTests>${skip.unit.tests}</skipTests>
                 </configuration>
                 <executions>
                     <execution>
                         <phase>test</phase>
-                        <id>default-test</id>
+                        <id>unit-test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
                         <configuration>
                             <excludes>
-                                <exclude>**/it/**</exclude>
+                                <exclude>**/*IT.java</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -237,7 +242,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
-                    <skipITs>${skipTests}</skipITs>
+                    <skipITs>${skip.integration.tests}</skipITs>
                 </configuration>
                 <executions>
                     <execution>
@@ -248,9 +253,8 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <trimStackTrace>false</trimStackTrace>
                             <includes>
-                                <include>**/it/**</include>
+                                <include>**/*IT.java</include>
                             </includes>
                         </configuration>
                     </execution>
@@ -455,15 +459,15 @@
     </reporting>
     <issueManagement>
         <system>Github Issues</system>
-        <url>https://github.com/hantsy/jakartaee8-starter/issues</url>
+        <url>https://github.com/hantsy/jakartaee9-starter-boilerplate/issues</url>
     </issueManagement>
     <ciManagement>
         <system>Github Actions</system>
-        <url>https://github.com/hantsy/jakartaee8-starter/actions</url>
+        <url>https://github.com/hantsy/jakartaee9-starter-boilerplate/actions</url>
     </ciManagement>
     <scm>
         <url>https://github.com/hantsy/jakartaee8-starter</url>
-        <connection>scm:git:https://github.com/hantsy/jakartaee8-starter</connection>
-        <developerConnection>scm:git:https://github.com/hantsy/jakartaee8-starter</developerConnection>
+        <connection>scm:git:https://github.com/hantsy/jakartaee9-starter-boilerplate</connection>
+        <developerConnection>scm:git:https://github.com/hantsy/jakartaee9-starter-boilerplate</developerConnection>
     </scm>
 </project>
