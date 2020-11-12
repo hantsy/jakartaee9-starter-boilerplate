@@ -51,9 +51,9 @@
         <assertj.version>3.17.2</assertj.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>6.0.0-M1</glassfish.version>
+        <glassfish.version>6.0.0-RC2</glassfish.version>
         <arquillian-glassfish.version>1.0.2</arquillian-glassfish.version>
-        <jersey.version>3.0.0-M6</jersey.version>
+        <jersey.version>3.0.0</jersey.version>
 
         <!-- TODO: upgrade Payara server -->
         <payara.version>5.194</payara.version>
@@ -76,6 +76,9 @@
         <liberty-maven-plugin.version>3.2.4</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
         <cxf.version>3.3.5</cxf.version>
+
+        <!-- tomee version -->
+        <tomee.version>9.0.0-M2</tomee.version>
 
         <!-- By default, skip tests -->
         <skip.unit.tests>true</skip.unit.tests>
@@ -270,6 +273,42 @@
             </properties>
         </profile>
         <profile>
+            <id>glassfish-standalone</id>
+            <properties>
+                <cargo.hostname>localhost</cargo.hostname>
+                <cargo.servlet.port>8080</cargo.servlet.port>
+                <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                <cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs</cargo.zipUrlInstaller.downloadDir>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <version>${cargo-maven2-plugin.version}</version>
+                        <configuration>
+                            <container>
+                                <containerId>glassfish5x</containerId>
+                                <zipUrlInstaller>
+                                    <url>https://download.eclipse.org/ee4j/glassfish/glassfish-6.0.0-RC2.zip</url>
+                                    <downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
+                                </zipUrlInstaller>
+                            </container>
+                            <configuration>
+                                <home>${project.build.directory}/glassfish6x-home</home>
+                                <properties>
+                                    <cargo.hostname>${cargo.hostname}</cargo.hostname>
+                                    <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+                                    <cargo.glassfish.admin.port>${cargo.glassfish.admin.port}</cargo.glassfish.admin.port>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>glassfish-local</id>
             <properties>
                 <glassfish.home>${project.build.directory}/glassfish6</glassfish.home>
@@ -292,8 +331,6 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <!-- <groupId>fish.payara.distributions</groupId> <artifactId>payara</artifactId>
-                                            <version>${payara.version}</version> <type>zip</type> -->
                                             <groupId>org.glassfish.main.distributions</groupId>
                                             <artifactId>glassfish</artifactId>
                                             <version>${glassfish.version}</version>
@@ -321,20 +358,11 @@
                                 <home>${glassfish.domainDir}</home>
                                 <properties>
                                     <cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
-                                    <cargo.remote.timeout>600000</cargo.remote.timeout>
                                     <cargo.remote.password></cargo.remote.password>
                                 </properties>
                             </configuration>
                         </configuration>
-                        <!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
-                        <dependencies>
-                            <dependency>
-                                <groupId>org.glassfish.main.deployment</groupId>
-                                <artifactId>deployment-client</artifactId>
-                                <version>5.1.0</version>
-                                <!--<version>${glassfish.version}</version>-->
-                            </dependency>
-                        </dependencies>
+
                     </plugin>
                 </plugins>
 
@@ -441,6 +469,22 @@
                         <groupId>io.openliberty.tools</groupId>
                         <artifactId>liberty-maven-plugin</artifactId>
                         <version>${liberty-maven-plugin.version}</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>tomee</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.openejb.maven</groupId>
+                        <artifactId>tomee-maven-plugin</artifactId>
+                        <version>1.7.5</version>
+                        <configuration>
+                            <tomeeVersion>${tomee.version}</tomeeVersion>
+                            <tomeeClassifier>plume</tomeeClassifier>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
