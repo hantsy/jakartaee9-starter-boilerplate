@@ -18,9 +18,12 @@
         <!-- Set java compiler version to 11 if you do not needs Java 8 support-->
         <!-- <maven.compiler.release>11</maven.compiler.release>-->
 
-        <!--Java 11 is an optional requirement in Jakarta EE 9, `maven.compiler.release` is not available when using Java 8-->
+        <!--Java 11 is an optional requirement in Jakarta EE 9,
+        and Java 11 support in Glassfish is postponed to v6.1
+        `maven.compiler.release` is not available when using Java 8-->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
         <!-- The default value changed to `false` since maven-war-plugin 3.0.0 -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
@@ -204,6 +207,15 @@
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.cargo</groupId>
+                    <artifactId>cargo-maven2-plugin</artifactId>
+                    <version>${cargo-maven2-plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -278,7 +290,8 @@
                 <cargo.hostname>localhost</cargo.hostname>
                 <cargo.servlet.port>8080</cargo.servlet.port>
                 <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                <cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs</cargo.zipUrlInstaller.downloadDir>
+                <cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs
+                </cargo.zipUrlInstaller.downloadDir>
             </properties>
 
             <build>
@@ -286,7 +299,6 @@
                     <plugin>
                         <groupId>org.codehaus.cargo</groupId>
                         <artifactId>cargo-maven2-plugin</artifactId>
-                        <version>${cargo-maven2-plugin.version}</version>
                         <configuration>
                             <container>
                                 <containerId>glassfish5x</containerId>
@@ -300,7 +312,8 @@
                                 <properties>
                                     <cargo.hostname>${cargo.hostname}</cargo.hostname>
                                     <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
-                                    <cargo.glassfish.admin.port>${cargo.glassfish.admin.port}</cargo.glassfish.admin.port>
+                                    <cargo.glassfish.admin.port>${cargo.glassfish.admin.port}
+                                    </cargo.glassfish.admin.port>
                                 </properties>
                             </configuration>
                         </configuration>
@@ -320,7 +333,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
-                        <version>${maven-dependency-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>unpack</id>
@@ -346,7 +358,6 @@
                     <plugin>
                         <groupId>org.codehaus.cargo</groupId>
                         <artifactId>cargo-maven2-plugin</artifactId>
-                        <version>${cargo-maven2-plugin.version}</version>
                         <configuration>
                             <container>
                                 <containerId>glassfish5x</containerId>
@@ -362,10 +373,8 @@
                                 </properties>
                             </configuration>
                         </configuration>
-
                     </plugin>
                 </plugins>
-
             </build>
         </profile>
         <profile>
@@ -391,6 +400,7 @@
                             </configuration>
                         </configuration>
                         <!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
+                        <!-- WARNING: deployment client is not available in Glassfish v6.0 -->
                         <dependencies>
                             <dependency>
                                 <groupId>org.glassfish.main.deployment</groupId>
