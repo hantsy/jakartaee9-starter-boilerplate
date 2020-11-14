@@ -1,0 +1,206 @@
+# Deploying Jakarta EE 9 applications to Glassfish v6 using Cargo maven plugin
+
+Glassfish v6 RC2 is released and Jakarta EE 9 is ready for the public, I think the official announcement will come in the a few days.
+
+In the former [Jakarta EE 8 starter boilerplate](https://github.com/hantsy/jakartaee8-starter) , I have described [how to deploy a Jakarta EE 8 application on Glassfish v5](https://github.com/hantsy/jakartaee8-starter/blob/master/docs/03run-glassfish-mvn.md), in this post, we refresh it and try to deploy a Jakarta EE 9 to Glassfish v6 application server.
+
+## Prerequisites
+
+Make sure you have installed the following software.
+
+* Java 8, Oracle JDK 8 or AdoptOpenJDK 8 is recommended, please note Glassfish v6 still only supports Java 8, the next 6.1 will focus on Java 11 support.
+* Download and install [Glassfish v6](https://github.com/eclipse-ee4j/glassfish/releases) , this is required when you are deploying the applications via the **existing** and remote **runtime** configuration. 
+* Download and install [Apache Maven](http://maven.apache.org/) 
+* Get to know the basic of [Cargo maven plugin](https://codehaus-cargo.github.io/). 
+
+ >In this post we still use the Cargo `glassfish5x` container to perform the deployment. Cargo will include a new `glassfish6x` container in 1.8.3 for Glassfish v6.
+
+## Deploying the applications
+
+Clone the [Jakarta EE9 starter boilerplate](https://github.com/hantsy/jakartaee9-starter-boilerplate) repository into your local disk.
+
+Open a terminal and switch to the project root folder, execute the following command to build and deploy the Jakarta EE 9 applications .
+
+```bash
+mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:1.8.2:run 
+-Dcargo.maven.containerId=glassfish5x   
+-Dcargo.maven.containerUrl=https://download.eclipse.org/ee4j/glassfish/glassfish-6.0.0-RC2.zip  
+-Dcargo.servlet.port=8080
+```
+
+The cargo maven plugin will download the archive and create a new domain configuration for the application deployment, then start the new created domain, and deploy the deployable file( `target\jakartaee9-starter-boilerplate.war`).
+
+```bash
+[INFO] --- cargo-maven2-plugin:1.8.2:run (default-cli) @ jakartaee9-starter-boilerplate ---
+[INFO] [en2.ContainerRunMojo] Resolved container artifact org.codehaus.cargo:cargo-core-container-glassfish:jar:1.8.2 for container glassfish5x
+[INFO] [talledLocalContainer] Parsed GlassFish version = [6.0.0.RC2]
+[INFO] [talledLocalContainer] GlassFish 6.0.0.RC2 starting...
+[INFO] [talledLocalContainer] Using port 4848 for Admin.
+[INFO] [talledLocalContainer] Using port 8080 for HTTP Instance.
+[INFO] [talledLocalContainer] Using port 7676 for JMS.
+[INFO] [talledLocalContainer] Using port 3700 for IIOP.
+[INFO] [talledLocalContainer] Using port 8181 for HTTP_SSL.
+[INFO] [talledLocalContainer] Using port 3820 for IIOP_SSL.
+[INFO] [talledLocalContainer] Using port 3920 for IIOP_MUTUALAUTH.
+[INFO] [talledLocalContainer] Using port 8686 for JMX_ADMIN.
+[INFO] [talledLocalContainer] Using port 6666 for OSGI_SHELL.
+[INFO] [talledLocalContainer] Using port 9009 for JAVA_DEBUGGER.
+[INFO] [talledLocalContainer] Distinguished Name of the self-signed X.509 Server Certificate is:
+[INFO] [talledLocalContainer] [CN=hantsy-t540p,OU=GlassFish,O=Eclipse.org Foundation Inc,L=Ottawa,ST=Ontario,C=CA]
+[INFO] [talledLocalContainer] Distinguished Name of the self-signed X.509 Server Certificate is:
+[INFO] [talledLocalContainer] [CN=hantsy-t540p-instance,OU=GlassFish,O=Eclipse.org Foundation Inc,L=Ottawa,ST=Ontario,C=CA]
+[INFO] [talledLocalContainer] Domain cargo-domain created.
+[INFO] [talledLocalContainer] Domain cargo-domain admin port is 4848.
+[INFO] [talledLocalContainer] Domain cargo-domain admin user is "admin".
+[INFO] [talledLocalContainer] Command create-domain executed successfully.
+[INFO] [talledLocalContainer] Attempting to start cargo-domain.... Please look at the server log for more details.....
+[INFO] [talledLocalContainer] remote failure: The jdbc resource [ jdbc/__default ] cannot be deleted as it is required to be configured in the system.
+[INFO] [talledLocalContainer] Command delete-jdbc-resource failed.
+[INFO] [talledLocalContainer] JDBC Connection pool DerbyPool deleted successfully
+[INFO] [talledLocalContainer] Command delete-jdbc-connection-pool executed successfully.
+[INFO] [talledLocalContainer] Application deployed with name jakartaee9-starter-boilerplate.
+[INFO] [talledLocalContainer] Command deploy executed successfully.
+[INFO] [talledLocalContainer] Application deployed with name cargocpc.
+[INFO] [talledLocalContainer] Command deploy executed successfully.
+[INFO] [talledLocalContainer] GlassFish 6.0.0.RC2 started on port [8080]
+[INFO] Press Ctrl-C to stop the container...
+```
+
+The above command is equivalent to the following config in the project *pom.xml* file.
+
+```xml
+ <properties>
+	<cargo.servlet.port>8080</cargo.servlet.port>
+	<cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs
+	</cargo.zipUrlInstaller.downloadDir>
+</properties>
+
+<build>
+	<plugins>
+		<plugin>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-maven2-plugin</artifactId>
+			<configuration>
+				<container>
+					<containerId>glassfish5x</containerId>
+					<zipUrlInstaller>
+						<url>https://download.eclipse.org/ee4j/glassfish/glassfish-6.0.0-RC2.zip</url>
+						<downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
+					</zipUrlInstaller>
+				</container>
+				<configuration>
+					<home>${project.build.directory}/glassfish6x-home</home>
+					<properties>
+						<cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+					</properties>
+				</configuration>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+```
+
+You can run the following command instead with the above configuration.
+
+```bash
+mvn clean verify cargo:run
+```
+
+Here we use the `run` goal, it will keep the application running until send a `CTRL+C` command to stop it.
+
+If you have prepared a copy of Glassfish v6,  you can reuse the **existing** Glassfish and domain configuration.
+
+```xml
+<properties>
+	<glassfish.home>[ The existing glassfish6 dir]</glassfish.home>
+	<glassfish.domainDir>${glassfish.home}/glassfish/domains</glassfish.domainDir>
+	<glassfish.domainName>domain1</glassfish.domainName>
+</properties>
+<build>
+	<plugins>
+		<plugin>
+			<groupId>org.codehaus.cargo</groupId>
+			<artifactId>cargo-maven2-plugin</artifactId>
+			<configuration>
+				<container>
+					<containerId>glassfish5x</containerId>
+					<type>installed</type>
+					<home>${glassfish.home}</home>
+				</container>
+				<configuration>
+					<type>existing</type>
+					<home>${glassfish.domainDir}</home>
+					<properties>
+						<cargo.glassfish.domain.name>${glassfish.domainName}</cargo.glassfish.domain.name>
+						<cargo.remote.password></cargo.remote.password>
+					</properties>
+				</configuration>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+```
+
+In the above codes, set the configuration type to **existing**, and specify the domain name to the default `domain1`, when run the following command it will reuse the existing `domain1` to deploy the applications.
+
+```bash
+mvn clean verify cargo:run
+```
+
+If you want to deploy your applications to a running Glassfish v6 server(may be it is running on a different machine), try to configure a **runtime** configuration and use a **remote** deployer to perform the deployment.
+
+```xml
+<plugin>
+	<groupId>org.codehaus.cargo</groupId>
+	<artifactId>cargo-maven2-plugin</artifactId>
+	<configuration>
+		<container>
+			<containerId>glassfish5x</containerId>
+			<type>remote</type>
+		</container>
+		<configuration>
+			<type>runtime</type>
+			<properties>
+				<cargo.remote.username>admin</cargo.remote.username>
+				<cargo.remote.password></cargo.remote.password>
+				<cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+				<cargo.hostname>localhost</cargo.hostname>
+			</properties>
+		</configuration>
+	</configuration>
+	<!-- provides JSR88 client API to deploy on Glassfish/Payara Server -->
+	<!-- WARNING: deployment client is not available in Glassfish v6.0 -->
+	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.main.deployment</groupId>
+			<artifactId>deployment-client</artifactId>
+			<version>5.1.0</version>
+			<!--<version>${glassfish.version}</version>-->
+		</dependency>
+	</dependencies>
+</plugin>
+```
+
+ In the  above configuration:
+
+* `cargo.hostname` is the target server you want to deploy to 
+* `cargo.remote.username` and `cargo.remote.password` is administrator account used to deploy
+* The remote deployer depends on a `deployment-client` archetype, here we use the version `5.1.0`,  there is no new version for Glassfish v6, and JSR 88 spec is removed in Jakarta EE 9.
+
+For a remote container, you can not control the start and stop lifecycle as the former configurations.
+
+```bash
+# deploy applications
+mvn clean verify cargo:deploy
+
+# undeploy
+mvn cargo:undeploy
+```
+
+When the application is deployed successfully, use `curl` to verify if the deployed application is running.
+
+```bash
+curl http://localhost:8080/jakartaee9-starter-boilerplate/api/greeting/Hantsy
+{"message":"Say Hello to Hantsy at 2020-11-14T15:56:10.099"}
+```
+
