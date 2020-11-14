@@ -189,7 +189,7 @@ If you want to deploy your applications to a running Glassfish v6 server(esp. it
 * `cargo.remote.username` and `cargo.remote.password` is administrator account used to deploy
 * The remote deployer depends on a `deployment-client` archetype, here we use the version `5.1.0`,  there is no new version for Glassfish v6, and JSR 88 spec is removed in Jakarta EE 9.
 
-For a remote container, you can not control the start and stop lifecycle as the former configurations, use `deploy` and `undeploy` goal to perform the deploy and undeploy work.
+For a remote container, you can not control the start and stop lifecycle as the former configurations, use `deploy` and `undeploy` goal to perform the deploy and undeploy tasks.
 
 ```bash
 # deploy applications
