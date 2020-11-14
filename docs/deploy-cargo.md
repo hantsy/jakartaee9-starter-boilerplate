@@ -1,16 +1,16 @@
 # Deploying Jakarta EE 9 applications to Glassfish v6 using Cargo maven plugin
 
-Glassfish v6 RC2 is released and Jakarta EE 9 is ready for the public, I think the official announcement will come in the a few days.
+From the Jakarta EE mail subscription, I think Jakarta EE 9 is ready for the public and the official announcement will come soon in a few days.
 
-In the former [Jakarta EE 8 starter boilerplate](https://github.com/hantsy/jakartaee8-starter) , I have described [how to deploy a Jakarta EE 8 application on Glassfish v5](https://github.com/hantsy/jakartaee8-starter/blob/master/docs/03run-glassfish-mvn.md), in this post, we refresh it and try to deploy a Jakarta EE 9 to Glassfish v6 application server.
+In the former [Jakarta EE 8 starter boilerplate](https://github.com/hantsy/jakartaee8-starter) , I have described [how to deploy a Jakarta EE 8 application on Glassfish v5](https://github.com/hantsy/jakartaee8-starter/blob/master/docs/03run-glassfish-mvn.md), in this post, I will update it and try to deploy the Jakarta EE 9 sample application to a Glassfish v6 application server.
 
 ## Prerequisites
 
 Make sure you have installed the following software.
 
-* Java 8, Oracle JDK 8 or AdoptOpenJDK 8 is recommended, please note Glassfish v6 still only supports Java 8, the next 6.1 will focus on Java 11 support.
+* Java 8, yes, Glassfish v6 still only supports Java 8, the next 6.1 will focus on Java 11 support. Oracle JDK 8 or AdoptOpenJDK 8 is recommended.
 * Download and install [Glassfish v6](https://github.com/eclipse-ee4j/glassfish/releases) , this is required when you are deploying the applications via the **existing** and remote **runtime** configuration. 
-* Download and install [Apache Maven](http://maven.apache.org/) 
+* Download and install [Apache Maven](http://maven.apache.org/) .
 * Get to know the basic of [Cargo maven plugin](https://codehaus-cargo.github.io/). 
 
  >In this post we still use the Cargo `glassfish5x` container to perform the deployment. Cargo will include a new `glassfish6x` container in 1.8.3 for Glassfish v6.
@@ -19,7 +19,7 @@ Make sure you have installed the following software.
 
 Clone the [Jakarta EE9 starter boilerplate](https://github.com/hantsy/jakartaee9-starter-boilerplate) repository into your local disk.
 
-Open a terminal and switch to the project root folder, execute the following command to build and deploy the Jakarta EE 9 applications .
+Open a terminal and switch to the project root folder, execute the following command to build and deploy this Jakarta EE 9 application to Glassfish v6 .
 
 ```bash
 mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:1.8.2:run 
@@ -28,7 +28,9 @@ mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:1.8.2:run
 -Dcargo.servlet.port=8080
 ```
 
-The cargo maven plugin will download the archive and create a new domain configuration for the application deployment, then start the new created domain, and deploy the deployable file( `target\jakartaee9-starter-boilerplate.war`).
+This command will use Maven to build the project, and then call  cargo maven plugin to download a copy of Glassfish v6 from the the specified URL, and then try to prepare a new domain configuration for the application deployment, then start the new created domain, and final deploy the deployable file( `target\jakartaee9-starter-boilerplate.war`).
+
+You will see info similar to the following when the deployment is successful.
 
 ```bash
 [INFO] --- cargo-maven2-plugin:1.8.2:run (default-cli) @ jakartaee9-starter-boilerplate ---
@@ -106,7 +108,7 @@ You can run the following command instead with the above configuration.
 mvn clean verify cargo:run
 ```
 
-Here we use the `run` goal, it will keep the application running until send a `CTRL+C` command to stop it.
+Here we use the `run` goal, it will keep the application server running until we sending a `CTRL+C` command to stop it.
 
 If you have prepared a copy of Glassfish v6,  you can reuse the **existing** Glassfish and domain configuration.
 
@@ -147,7 +149,7 @@ In the above codes, set the configuration type to **existing**, and specify the 
 mvn clean verify cargo:run
 ```
 
-If you want to deploy your applications to a running Glassfish v6 server(may be it is running on a different machine), try to configure a **runtime** configuration and use a **remote** deployer to perform the deployment.
+If you want to deploy your applications to a running Glassfish v6 server(esp. it is running on a different machine), try to configure a **runtime** configuration and use a **remote** deployer to perform the deployment.
 
 ```xml
 <plugin>
@@ -187,7 +189,7 @@ If you want to deploy your applications to a running Glassfish v6 server(may be 
 * `cargo.remote.username` and `cargo.remote.password` is administrator account used to deploy
 * The remote deployer depends on a `deployment-client` archetype, here we use the version `5.1.0`,  there is no new version for Glassfish v6, and JSR 88 spec is removed in Jakarta EE 9.
 
-For a remote container, you can not control the start and stop lifecycle as the former configurations.
+For a remote container, you can not control the start and stop lifecycle as the former configurations, use `deploy` and `undeploy` goal to perform the deploy and undeploy work.
 
 ```bash
 # deploy applications
@@ -204,3 +206,4 @@ curl http://localhost:8080/jakartaee9-starter-boilerplate/api/greeting/Hantsy
 {"message":"Say Hello to Hantsy at 2020-11-14T15:56:10.099"}
 ```
 
+I have added the above configurations with different Maven profiles in the *pom.xml*.  Check out the [source codes](https://github.com/hantsy/jakartaee9-starter-boilerplate/) and explore yourself.
