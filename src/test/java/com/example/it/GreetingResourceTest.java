@@ -4,31 +4,32 @@ import com.example.GreetingMessage;
 import com.example.GreetingResource;
 import com.example.GreetingService;
 import com.example.JaxrsActivator;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(Arquillian.class)
+
+@ExtendWith(ArquillianExtension.class)
 public class GreetingResourceTest {
     private final static Logger LOGGER = Logger.getLogger(GreetingResourceTest.class.getName());
 
@@ -47,7 +48,7 @@ public class GreetingResourceTest {
 
     private Client client;
 
-    @Before
+    @BeforeEach
     public void setup() {
         this.client = ClientBuilder.newClient();
         try {
@@ -60,7 +61,7 @@ public class GreetingResourceTest {
 
     }
 
-    @After
+    @AfterEach
     public void teardown() {
         if (this.client != null) {
             this.client.close();
@@ -74,10 +75,8 @@ public class GreetingResourceTest {
         try (final Response greetingGetResponse = greetingTarget.request()
                 .accept(MediaType.APPLICATION_JSON)
                 .get()) {
-            assertEquals("response status is ok", 200, greetingGetResponse.getStatus());
-            assertTrue("message should start with \"Say Hello to JakartaEE at \"",
-                    greetingGetResponse.readEntity(GreetingMessage.class).getMessage().startsWith("Say Hello to JakartaEE"));
-
+            assertThat(greetingGetResponse.getStatus()).isEqualTo(200);
+            assertThat(greetingGetResponse.readEntity(GreetingMessage.class).getMessage()).startsWith("Say Hello to JakartaEE");
         }
     }
 }
