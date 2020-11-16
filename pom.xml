@@ -14,17 +14,18 @@
     <properties>
         <!-- Global Maven settings -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Set java compiler version to 11 if you do not needs Java 8 support-->
         <!-- <maven.compiler.release>11</maven.compiler.release>-->
 
-        <!--Java 11 is an optional requirement in Jakarta EE 9,
-        and Java 11 support in Glassfish is postponed to v6.1
-        `maven.compiler.release` is not available when using Java 8-->
+        <!--Jakarta EE 9 requires Java 8, Java 11 is not a must.
+        Java 11 support in Glassfish is postponed to v6.1.
+        The `maven.compiler.release` property is not available when using Java 8-->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <!-- The default value changed to `false` since maven-war-plugin 3.0.0 -->
+        <!-- The default value is changed to `false` since maven-war-plugin 3.0.0 -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
 
         <!-- Official Maven Plugins -->
@@ -46,7 +47,6 @@
         <junit-jupiter.version>5.6.2</junit-jupiter.version>
 
         <!-- Test Utilities -->
-        <junit.version>4.13.1</junit.version>
         <mockito.version>3.6.0</mockito.version>
         <json-path.version>2.4.0</json-path.version>
         <awaitility.version>4.0.3</awaitility.version>
@@ -77,12 +77,15 @@
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.2.4</liberty-maven-plugin.version>
         <!-- Jakarta EE 9 support is in progress, see: https://github.com/OpenLiberty/liberty-arquillian/issues/71 -->
-        <liberty-maven-plugin.version>3.2.4</liberty-maven-plugin.version>
         <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
         <cxf.version>3.3.5</cxf.version>
 
-        <!-- tomee version -->
+        <!-- TODO: Apache Tomee -->
         <tomee.version>9.0.0-M2</tomee.version>
+
+        <!-- Weld embedded-->
+        <arquillian-weld-embedded.version>3.0.0.Alpha1</arquillian-weld-embedded.version>
+        <weld.version>4.0.0.Beta5</weld.version>
 
         <!-- By default, skip tests -->
         <skip.unit.tests>true</skip.unit.tests>
@@ -328,9 +331,15 @@
                             <container>
                                 <containerId>glassfish5x</containerId>
                                 <zipUrlInstaller>
-                                    <url>https://download.eclipse.org/ee4j/glassfish/glassfish-6.0.0-RC2.zip</url>
+                                    <url>https://download.eclipse.org/ee4j/glassfish/glassfish-${glassfish.version}.zip</url>
                                     <downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
                                 </zipUrlInstaller>
+                                <!-- or use artifactInstaller-->
+                                <!--<artifactInstaller>
+                                    <groupId>org.glassfish.main.distributions</groupId>
+                                    <artifactId>glassfish</artifactId>
+                                    <version>${glassfish.version}</version>
+                                </artifactInstaller>-->
                             </container>
                             <configuration>
                                 <home>${project.build.directory}/glassfish6x-home</home>
@@ -361,7 +370,7 @@
                         <executions>
                             <execution>
                                 <id>unpack</id>
-                                <phase>process-resources</phase>
+                                <phase>process-test-resources</phase>
                                 <goals>
                                     <goal>unpack</goal>
                                 </goals>
@@ -449,9 +458,8 @@
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>${wildfly-maven-plugin.version}</version>
                         <configuration>
-                            <!-- if a wildfly.home property is not present, firstly it will download
+                            <!-- if a wildfly.home or `jbossHome` property is not present, firstly it will download
                             a copy of wildfly distribution automatically -->
-                            <!-- also fetch from jbossHome -->
                             <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
 
                             <!-- control remote wildfly server -->
@@ -541,13 +549,13 @@
                 <dependency>
                     <groupId>org.jboss.arquillian.container</groupId>
                     <artifactId>arquillian-weld-embedded</artifactId>
-                    <version>3.0.0.Alpha1</version>
+                    <version>${arquillian-weld-embedded.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.weld</groupId>
                     <artifactId>weld-core-impl</artifactId>
-                    <version>4.0.0.Beta5</version>
+                    <version>${weld.version}</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
