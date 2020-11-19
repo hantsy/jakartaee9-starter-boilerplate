@@ -71,7 +71,7 @@
         <resteasy.version>3.9.0.Final</resteasy.version>
 
         <!-- TODO: OpenLiberty server -->
-        <liberty.runtime.version>20.0.0.11-beta</liberty.runtime.version>
+        <liberty.runtime.version>20.0.0.12-beta</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.2.4</liberty-maven-plugin.version>
@@ -448,6 +448,12 @@
         </profile>
         <profile>
             <id>openliberty</id>
+            <!-- Use the following command to start and deploy applications to a `pre-existing` OpenLiberty beta -->
+            <!-- mvn clean package liberty:start liberty:deploy -Popenliberty-->
+
+            <!-- Note: the `liberty:run` goal will clean the server in the `/target` folder automatically. -->
+            <!-- Use this command to create a OpenLiberty server from scratch and deploy the applications to it -->
+            <!-- mvn clean liberty:create package liberty:deploy -Popenliberty-->
             <build>
                 <plugins>
                     <plugin>
@@ -456,32 +462,55 @@
                         <version>${maven-dependency-plugin.version}</version>
                         <executions>
                             <execution>
-                                <id>copy</id>
+                                <id>default-unpack</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>io.openliberty.beta</groupId>
+                                            <artifactId>openliberty-jakartaee9</artifactId>
+                                            <version>${liberty.runtime.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/liberty
+                                            </outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>default-copy</id>
                                 <phase>process-resources</phase>
                                 <goals>
                                     <goal>copy</goal>
                                 </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.apache.derby</groupId>
+                                            <artifactId>derby</artifactId>
+                                            <version>${derby.version}</version>
+                                            <type>jar</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
+                                            </outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
                             </execution>
                         </executions>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.apache.derby</groupId>
-                                    <artifactId>derby</artifactId>
-                                    <version>${derby.version}</version>
-                                    <type>jar</type>
-                                    <overWrite>false</overWrite>
-                                </artifactItem>
-                            </artifactItems>
-                            <outputDirectory>${project.build.directory}/liberty/wlp/usr/shared/resources
-                            </outputDirectory>
-                        </configuration>
                     </plugin>
                     <!-- Enable liberty-maven-plugin -->
                     <plugin>
                         <groupId>io.openliberty.tools</groupId>
                         <artifactId>liberty-maven-plugin</artifactId>
                         <version>${liberty-maven-plugin.version}</version>
+                        <configuration>
+                            <installDirectory>${project.build.directory}/liberty/wlp</installDirectory>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
