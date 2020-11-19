@@ -428,6 +428,7 @@
                             a copy of wildfly distribution automatically -->
                             <!-- also fetch from jbossHome -->
                             <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
+                            <!--<jbossHome>D:\appsvr\wildfly-preview-22.0.0.Alpha1</jbossHome>-->
 
                             <!-- control remote wildfly server -->
                             <!-- <hostname></hostname>
