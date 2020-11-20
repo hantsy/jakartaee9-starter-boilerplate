@@ -417,20 +417,22 @@
             <id>wildfly</id>
             <build>
                 <plugins>
-                    <!-- The WildFly plugin deploys your war to a local WildFly container -->
+                    <!-- The WildFly plugin deploys your war to a local running WildFly container -->
                     <!-- To use, run: mvn package wildfly:deploy -->
+                    <!-- For Jakarta EE 9, use `wildfly-preview-dist` as artifactId instead to start and deploy applications-->
+                    <!-- Run: mvn clean wildfly:run -PWildfly -Dwildfly.artifactId=wildfly-preview-dist -Dwildfly.version=22.0.0.Alpha1 -->
+                    <!-- or set the `jboss-as.home` to run: mvn clean wildfly:run -PWildfly -Djboss-as.home=D:\appsvr\wildfly-preview-22.0.0.Alpha1-->
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>${wildfly-maven-plugin.version}</version>
                         <configuration>
-                            <!-- if a wildfly.home property is not present, firstly it will download
+                            <!-- if a jboss-as.home or jboss.home property is not present, firstly it will download
                             a copy of wildfly distribution automatically -->
-                            <!-- also fetch from jbossHome -->
                             <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
                             <!--<jbossHome>D:\appsvr\wildfly-preview-22.0.0.Alpha1</jbossHome>-->
 
-                            <!-- control remote wildfly server -->
+                            <!-- To deploy a running wildfly server -->
                             <!-- <hostname></hostname>
                             <port></port>
                             <username></username>
