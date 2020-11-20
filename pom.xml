@@ -82,6 +82,7 @@
 
         <!-- tomee version -->
         <tomee.version>9.0.0-M2</tomee.version>
+        <tomee-maven-plugin.version>8.0.4</tomee-maven-plugin.version>
 
         <!-- By default, skip tests -->
         <skip.unit.tests>true</skip.unit.tests>
@@ -517,12 +518,21 @@
         </profile>
         <profile>
             <id>tomee</id>
+            <!-- 9.0.0-M2 is not found in the public maven repo, install from local file temporarily -->
+            <!-- mvn install:install-file -DgroupId=org.apache.tomee
+                    -DartifactId=apache-tomee
+                    -Dversion=9.0.0-M2
+                    -Dclassifier=plume
+                    -Dpackaging=zip
+                    -Dfile=C:\Users\hantsy\Downloads\apache-tomee-9.0.0-M2-plume(1).zip
+            -->
+            <!-- Run: mvn clean package tomee:run -Ptomee to deploy applications -->
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.apache.openejb.maven</groupId>
+                        <groupId>org.apache.tomee.maven</groupId>
                         <artifactId>tomee-maven-plugin</artifactId>
-                        <version>1.7.5</version>
+                        <version>${tomee-maven-plugin.version}</version>
                         <configuration>
                             <tomeeVersion>${tomee.version}</tomeeVersion>
                             <tomeeClassifier>plume</tomeeClassifier>
