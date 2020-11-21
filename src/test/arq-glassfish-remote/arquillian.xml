@@ -9,7 +9,7 @@
         <property name="deploymentExportPath">target/</property>
     </engine>
 
-    <container qualifier="arq-glassfish-remote">
+    <container qualifier="glassfish-remote">
         <configuration>
             <!--Supported property names:
             [adminHttps,
@@ -28,7 +28,14 @@
             properties,
             adminPassword,
             adminHost]-->
+            <property name="adminHost">localhost</property>
+            <property name="adminPort">4848</property>
             <property name="adminUser">admin</property>
+            <!-- if https is enabled via `asadmin enable-secure-admin` on a remote server -->
+            <!-- <property name="adminHttps">true</property>-->
+            <!-- if admin password is changed via `asadmin change-admin-password` -->
+            <!--<property name="adminPassword">adminadmin</property>-->
+            <!-- default is empty -->
             <property name="adminPassword"></property>
         </configuration>
     </container>

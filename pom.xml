@@ -657,12 +657,20 @@
                 </dependency>
             </dependencies>
             <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/arq-weld</directory>
+                    </testResource>
+                </testResources>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
+                            <systemPropertyVariables>
+                                <arquillian.launch>arq-weld</arquillian.launch>
+                            </systemPropertyVariables>
                             <excludes>
                                 <exclude>**/it/GreetingResourceTest*</exclude>
                             </excludes>
@@ -732,6 +740,18 @@
                         <directory>src/test/arq-glassfish-remote</directory>
                     </testResource>
                 </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <arquillian.launch>glassfish-remote</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
         <profile>
