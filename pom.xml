@@ -19,9 +19,8 @@
         <!-- Set java compiler version to 11 if you do not needs Java 8 support-->
         <!-- <maven.compiler.release>11</maven.compiler.release>-->
 
-        <!--Jakarta EE 9 requires Java 8, Java 11 is not a must.
-        Java 11 support in Glassfish is postponed to v6.1.
-        The `maven.compiler.release` property is not available when using Java 8-->
+        <!--Glassfish v6.0 still requires Java 8, Java 11 support will be available in v6.1 -->
+        <!--NOTE:The `maven.compiler.release` property is not available when using Java 8-->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
@@ -802,6 +801,9 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <version>${maven-dependency-plugin.version}</version>
+                        <configuration>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>unpack</id>
