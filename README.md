@@ -1,6 +1,10 @@
 # Jakarta EE 9 Starter Boilerplate(WIP)
 
 ![Compile and build](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/Build/badge.svg)
+![Unit Test](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/unit-test/badge.svg)
+![Arquillain Integration Test with Weld Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-weld/badge.svg)
+![Arquillain Integration Test with Glassfish Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-managed/badge.svg)
+![Arquillain Integration Test with Glassfish Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-remote/badge.svg)
 
 ## What's this?
 
