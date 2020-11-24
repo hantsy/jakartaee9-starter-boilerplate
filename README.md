@@ -1,6 +1,10 @@
 # Jakarta EE 9 Starter Boilerplate(WIP)
 
 ![Compile and build](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/Build/badge.svg)
+![Unit Test](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/unit-test/badge.svg)
+![Arquillain Integration Test with Weld Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-weld/badge.svg)
+![Arquillain Integration Test with Glassfish Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-managed/badge.svg)
+![Arquillain Integration Test with Glassfish Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-remote/badge.svg)
 
 ## What's this?
 
@@ -10,6 +14,7 @@ The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakarta
 ## Docs 
 
 * [Upgrading to Jakarta EE 9](./docs/upgrade.md)
+* [Deploying to Glassfish v6.0 using Cargo maven plugin](./docs/deploy-cargo.md)
 
 ## Reference
 * [Jakarta EE 9 Milestone Release Party](https://www.crowdcast.io/e/JakartaEE9_Milestonereleaseparty?utm_source=crowdcast&utm_medium=email&utm_campaign=followers)

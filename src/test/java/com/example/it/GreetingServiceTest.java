@@ -2,22 +2,22 @@ package com.example.it;
 
 import com.example.GreetingMessage;
 import com.example.GreetingService;
+import jakarta.inject.Inject;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import jakarta.inject.Inject;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(Arquillian.class)
+
+@ExtendWith(ArquillianExtension.class)
 public class GreetingServiceTest {
     private final static Logger LOGGER = Logger.getLogger(GreetingServiceTest.class.getName());
 
@@ -36,7 +36,7 @@ public class GreetingServiceTest {
     public void should_create_greeting() {
         LOGGER.log(Level.INFO, " Running test:: GreetingServiceTest#should_create_greeting ... ");
         GreetingMessage message = service.buildGreetingMessage("Jakarta EE");
-        assertTrue("message should start with \"Say Hello to Jakarta EE at \"",
-                message.getMessage().startsWith("Say Hello to Jakarta EE at "));
+        assertTrue(message.getMessage().startsWith("Say Hello to Jakarta EE at "),
+                "message should start with \"Say Hello to Jakarta EE at \"");
     }
 }

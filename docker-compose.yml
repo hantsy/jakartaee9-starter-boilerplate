@@ -1,0 +1,15 @@
+version: '3.8' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+    
+  glassfish:
+    image: hantsy/glassfish6
+    ports:
+      - "4848:4848"
+      - "8080:8080"
+    networks:
+      - backend 
+
+networks:
+  backend:
