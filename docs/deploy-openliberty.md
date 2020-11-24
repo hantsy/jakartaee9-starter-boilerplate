@@ -84,11 +84,99 @@ Declare a `liberty-maven-plugin` configuration under `build/plugins` section in 
     <version>${liberty-maven-plugin.version}</version>
 </plugin>
 ```
-When simply run `liberty:run` , it will retrieve the latest `io.openliberty:openliberty-kernel` and install required features defined in your project specific `src/main/liberty/config/server.xml`  file.
+When simply running `liberty:run` , it will retrieve the latest `io.openliberty:openliberty-kernel` and install required features defined in your project specific `src/main/liberty/config/server.xml`  file, then start the server and deploy your application to this server.
 
-> The beta feature pack use a different groupId (`io.openliberty.beta `)in the Maven archetype.
+To use the latest Open Liberty Jakarta EE 9 beta feature pack to run our application, configure the `runtimeArtifact` in the `liberty-maven-plugin` configuration to replace the default  `openlibety-kernel`.
 
-To use the Jakarta EE 9 beta features,  add a `dependency:unpack`  to retrieve the archive directly, and then configure a `installDirectory` to allow `liberty-maven-plugin` to find the existing Open Liberty  server quickly.
+```xml
+<runtimeArtifact>
+    <groupId>io.openliberty.beta</groupId>
+    <artifactId>openliberty-jakartaee9</artifactId>
+    <version>${liberty.runtime.version}</version>
+</runtimeArtifact>
+```
+
+The  `liberty.runtime.version` property is defined in the `properties` section.
+
+```xml
+<liberty.runtime.version>21.0.0.1-beta</liberty.runtime.version>
+```
+
+Run the following command to deploy our application to the Open Liberty server.
+
+```bash
+mvn clean liberty:run
+```
+
+You will see the following message in the console.
+
+```bash
+[INFO] --- liberty-maven-plugin:3.3.1:run (default-cli) @ jakartaee9-starter-boilerplate ---
+[INFO] The runtimeArtifact version 21.0.0.1-beta is overwritten by the liberty.runtime.version value 21.0.0.1-beta.
+[INFO] CWWKM2102I: Using artifact based assembly archive : io.openliberty.beta:openliberty-jakartaee9:null:21.0.0.1-beta:zip.
+[INFO] CWWKM2102I: Using installDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp.
+[INFO] CWWKM2102I: Using serverName : defaultServer.
+[INFO] CWWKM2102I: Using serverDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer.
+[INFO] Running maven-compiler-plugin:compile
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to D:\hantsylabs\jakartaee9-starter-boilerplate\target\classes
+[INFO] Running maven-resources-plugin:resources
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Running liberty:create
+[INFO] The runtimeArtifact version 21.0.0.1-beta is overwritten by the liberty.runtime.version value 21.0.0.1-beta.
+[INFO] CWWKM2102I: Using artifact based assembly archive : io.openliberty.beta:openliberty-jakartaee9:null:21.0.0.1-beta:zip.
+[INFO] CWWKM2102I: Using installDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp.
+[INFO] CWWKM2102I: Using serverName : defaultServer.
+[INFO] CWWKM2102I: Using serverDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer.
+[INFO] Installing assembly...
+[INFO] Expanding: C:\Users\hantsy\.m2\repository\io\openliberty\beta\openliberty-jakartaee9\21.0.0.1-beta\openliberty-jakartaee9-21.0.0.1-beta.zip into D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty
+[INFO] CWWKM2143I: Server defaultServer does not exist. Now creating...
+[INFO] CWWKM2001I: Invoke command is ["D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\bin\server.bat", create, defaultServer].
+[INFO] Server defaultServer created.
+[INFO] CWWKM2129I: Server defaultServer has been created at D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer.
+[INFO] Copying 1 file to D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer
+[INFO] CWWKM2144I: Update server configuration file server.xml from D:\hantsylabs\jakartaee9-starter-boilerplate\src\main\liberty\config\server.xml.
+[INFO] Running liberty:install-feature
+[INFO] The runtimeArtifact version 21.0.0.1-beta is overwritten by the liberty.runtime.version value 21.0.0.1-beta.
+[INFO] CWWKM2102I: Using artifact based assembly archive : io.openliberty.beta:openliberty-jakartaee9:null:21.0.0.1-beta:zip.
+[INFO] CWWKM2102I: Using installDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp.
+[INFO] CWWKM2102I: Using serverName : defaultServer.
+[INFO] CWWKM2102I: Using serverDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer.
+[WARNING] Features that are not included with the beta runtime cannot be installed. Features that are included with the beta runtime can be enabled by adding them to your server.xml file.
+[INFO] Running liberty:deploy
+[INFO] The runtimeArtifact version 21.0.0.1-beta is overwritten by the liberty.runtime.version value 21.0.0.1-beta.
+[INFO] CWWKM2102I: Using artifact based assembly archive : io.openliberty.beta:openliberty-jakartaee9:null:21.0.0.1-beta:zip.
+[INFO] CWWKM2102I: Using installDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp.
+[INFO] CWWKM2102I: Using serverName : defaultServer.
+[INFO] CWWKM2102I: Using serverDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer.
+[INFO] Copying 1 file to D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer
+[INFO] CWWKM2144I: Update server configuration file server.xml from D:\hantsylabs\jakartaee9-starter-boilerplate\src\main\liberty\config\server.xml.
+[INFO] CWWKM2185I: The liberty-maven-plugin configuration parameter "appsDirectory" value defaults to "dropins".
+[INFO] CWWKM2160I: Installing application jakartaee9-starter-boilerplate.war.xml.
+[INFO] Copying 1 file to D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer
+[INFO] CWWKM2144I: Update server configuration file server.xml from D:\hantsylabs\jakartaee9-starter-boilerplate\src\main\liberty\config\server.xml.
+[INFO] CWWKM2001I: Invoke command is ["D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\bin\server.bat", run, defaultServer].
+[INFO] Launching defaultServer (Open Liberty 21.0.0.1-beta/wlp-1.0.47.cl201220201111-0736) on OpenJDK 64-Bit Server VM, version 11.0.7+10 (en_US)
+[INFO] CWWKE0953W: This version of Open Liberty is an unsupported early release version.
+[INFO] [AUDIT   ] CWWKE0001I: The server defaultServer has been launched.
+[INFO] [WARNING ] CWWKS3103W: There are no users defined for the BasicRegistry configuration of ID com.ibm.ws.security.registry.basic.config[basic].
+[INFO] [AUDIT   ] CWWKZ0058I: Monitoring dropins for applications.
+[INFO] [AUDIT   ] CWPKI0820A: The default keystore has been created using the 'keystore_password' environment variable.
+[INFO] [AUDIT   ] CWWKS4104A: LTPA keys created in 1.056 seconds. LTPA key file: D:/hantsylabs/jakartaee9-starter-boilerplate/target/liberty/wlp/usr/servers/defaultServer/resources/security/ltpa.keys
+[INFO] [AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9080/ibm/api/
+[INFO] [AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9080/IBMJMXConnectorREST/
+[INFO] [AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9080/jakartaee9-starter-boilerplate/
+[INFO] [AUDIT   ] CWWKZ0001I: Application jakartaee9-starter-boilerplate started in 6.360 seconds.
+[INFO] [AUDIT   ] CWWKF0012I: The server installed the following features: [appClientSupport-2.0, appSecurity-4.0, beanValidation-3.0, cdi-3.0, concurrent-2.0, connectors-2.0, connectorsInboundSecurity-2.0, distributedMap-1.0, enterpriseBeans-4.0, enterpriseBeansHome-4.0, enterpriseBeansLite-4.0, enterpriseBeansPersistentTimer-4.0, enterpriseBeansRemote-4.0, expressionLanguage-4.0, faces-3.0, jacc-2.0, jakartaee-9.0, jaspic-2.0, jaxb-3.0, jdbc-4.2, jndi-1.0, json-1.0, jsonb-2.0, jsonp-2.0, mail-2.0, managedBeans-2.0, mdb-4.0, messaging-3.0, messagingClient-3.0, messagingSecurity-3.0, messagingServer-3.0, pages-3.0, persistence-3.0, persistenceContainer-3.0, restConnector-2.0, restfulWS-3.0, restfulWSClient-3.0, servlet-5.0, ssl-1.0, webProfile-9.0, websocket-2.0].
+[INFO] [AUDIT   ] CWWKF0011I: The defaultServer server is ready to run a smarter planet. The defaultServer server started in 52.202 seconds.
+[INFO] [AUDIT   ] CWPKI0803A: SSL certificate created in 8.997 seconds. SSL key file: D:/hantsylabs/jakartaee9-starter-boilerplate/target/liberty/wlp/usr/servers/defaultServer/resources/security/key.p12
+[INFO] [AUDIT   ] CWWKI0001I: The CORBA name server is now available at corbaloc:iiop:localhost:2809/NameService.
+```
+
+> Note: The beta feature pack use a different **groupId** (`io.openliberty.beta `)in the Maven archetype.
+
+You can also specify a  `installDirectory` property in the plugin *configuration* to use an existing Open Liberty runtime. To create such an Open Liberty server from scratch,  add a `dependency:unpack`  to retrieve the archive directly.
 
 ```xml
 <plugin>
@@ -134,9 +222,92 @@ Now run the following command to deploy our application to Open Liberty.
 ```bash
 mvn clean package liberty:start liberty:deploy
 ```
-> NOTE:  We do not use `run` goal here, because it will clean the target folder at the initial stage, which will remove the downloaded Open Liberty dist.
+> NOTE:  We do not use `run` goal here, because it will clean the **target** folder at the initial stage, which will remove the downloaded Open Liberty dist.
 
-You can also configure  the `installDirectory` property to your location of your local Open Liberty server.
+You will the following message when executing `start` and `deploy` goals.
+
+```bash
+[INFO] --- liberty-maven-plugin:3.3.1:start (default-cli) @ jakartaee9-starter-boilerplate ---
+[INFO] CWWKM2102I: Using pre-installed assembly : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp.
+[INFO] CWWKM2102I: Using serverName : defaultServer.
+[INFO] CWWKM2102I: Using serverDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer.
+[INFO] CWWKM2107I: Installation type is pre-existing; skipping installation.
+[INFO] Copying 1 file to D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer
+[INFO] CWWKM2144I: Update server configuration file server.xml from D:\hantsylabs\jakartaee9-starter-boilerplate\src\main\liberty\config\server.xml.
+[INFO] CWWKM2001I: Invoke command is ["D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\bin\server.bat", start, defaultServer].
+[INFO] Starting server defaultServer.
+[INFO] CWWKE0953W: This version of Open Liberty is an unsupported early release version.
+[INFO] Server defaultServer started.
+[INFO] Waiting up to 30 seconds for server confirmation:  CWWKF0011I to be found in D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer\logs\messages.log
+[INFO] CWWKM2010I: Searching for CWWKF0011I in D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer\logs\messages.log. This search will timeout after 30 seconds.
+[INFO] CWWKM2015I: Match number: 1 is [11/24/20, 17:38:08:783 CST] 00000022 com.ibm.ws.kernel.feature.internal.FeatureManager            A CWWKF0011I: The defaultServer server is ready to run a smarter planet. The defaultServer server started in 53.584 seconds..
+[INFO]
+[INFO] --- liberty-maven-plugin:3.3.1:deploy (default-cli) @ jakartaee9-starter-boilerplate ---
+[INFO] CWWKM2102I: Using pre-installed assembly : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp.
+[INFO] CWWKM2102I: Using serverName : defaultServer.
+[INFO] CWWKM2102I: Using serverDirectory : D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer.
+[INFO] Copying 1 file to D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer
+[INFO] CWWKM2144I: Update server configuration file server.xml from D:\hantsylabs\jakartaee9-starter-boilerplate\src\main\liberty\config\server.xml.
+[INFO] CWWKM2185I: The liberty-maven-plugin configuration parameter "appsDirectory" value defaults to "dropins".
+[INFO] CWWKM2160I: Installing application jakartaee9-starter-boilerplate.war.xml.
+[INFO] CWWKM2010I: Searching for CWWKZ0001I.*jakartaee9-starter-boilerplate in D:\hantsylabs\jakartaee9-starter-boilerplate\target\liberty\wlp\usr\servers\defaultServer\logs\messages.log. This search will timeout after 40 seconds.
+[INFO] CWWKM2015I: Match number: 1 is [11/24/20, 17:38:16:858 CST] 00000028 com.ibm.ws.app.manager.AppMessageHelper                      A CWWKZ0001I: Application jakartaee9-starter-boilerplate started in 4.990 seconds..
+```
+
+In the startup stage, it will update the Open Liberty server config with the one in your project if it is existed.  An example *server.xml* file is like this.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>jakartaee-9.0</feature>
+    </featureManager>
+
+    <!-- This template enables security. To get the full use of all the capabilities, a keystore and user registry are required. -->
+    
+    <!-- For the keystore, default keys are generated and stored in a keystore. To provide the keystore password, generate an 
+         encoded password using bin/securityUtility encode and add it below in the password attribute of the keyStore element. 
+         Then uncomment the keyStore element. -->
+    <!--
+    <keyStore password=""/> 
+    -->
+    
+    <!--For a user registry configuration, configure your user registry. For example, configure a basic user registry using the
+        basicRegistry element. Specify your own user name below in the name attribute of the user element. For the password, 
+        generate an encoded password using bin/securityUtility encode and add it in the password attribute of the user element. 
+        Then uncomment the user element. -->
+    <basicRegistry id="basic" realm="BasicRealm"> 
+        <!-- <user name="yourUserName" password="" />  --> 
+    </basicRegistry>
+    
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  httpPort="9080"
+                  httpsPort="9443" />
+                  
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+</server>
+```
+
+To undeploy and stop the Open Liberty server, execute the following command .
+
+```bash
+mvn liberty:undeploy 
+mvn liberty:stop 
+```
+
+You can also configure  the `installDirectory` property to the location of your local Open Liberty server.
+
+```xml
+ <configuration>
+     <installDirectory>D:/appsvr/wlp</installDirectory>
+     ...
+</configuration>
+```
 
 The `liberty-maven-plugin` does not support to deploy applications to a running server, see [OpenLiberty/ci.maven#16](https://github.com/OpenLiberty/ci.maven/issues/16) for details.
 

@@ -334,7 +334,9 @@
                             <container>
                                 <containerId>glassfish5x</containerId>
                                 <zipUrlInstaller>
-                                    <url>https://download.eclipse.org/ee4j/glassfish/glassfish-${glassfish.version}.zip</url>
+                                    <url>
+                                        https://download.eclipse.org/ee4j/glassfish/glassfish-${glassfish.version}.zip
+                                    </url>
                                     <downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
                                 </zipUrlInstaller>
                                 <!-- or use artifactInstaller-->
@@ -493,7 +495,7 @@
             <!-- mvn clean liberty:create package liberty:deploy -Popenliberty-->
             <build>
                 <plugins>
-                    <plugin>
+                    <!--<plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <version>${maven-dependency-plugin.version}</version>
@@ -539,14 +541,20 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>
+                    </plugin>-->
                     <!-- Enable liberty-maven-plugin -->
                     <plugin>
                         <groupId>io.openliberty.tools</groupId>
                         <artifactId>liberty-maven-plugin</artifactId>
                         <version>${liberty-maven-plugin.version}</version>
                         <configuration>
-                            <installDirectory>${project.build.directory}/liberty/wlp</installDirectory>
+                            <runtimeArtifact>
+                                <groupId>io.openliberty.beta</groupId>
+                                <artifactId>openliberty-jakartaee9</artifactId>
+                                <version>${liberty.runtime.version}</version>
+                            </runtimeArtifact>
+                            <!--<installDirectory>D:/appsvr/wlp</installDirectory>-->
+                            <!--<installDirectory>${project.build.directory}/liberty/wlp</installDirectory>-->
                         </configuration>
                     </plugin>
                 </plugins>
