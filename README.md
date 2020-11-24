@@ -14,6 +14,7 @@ The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakarta
 ## Docs 
 
 * [Upgrading to Jakarta EE 9](./docs/upgrade.md)
+* [Deploying to Glassfish v6.0 using Cargo maven plugin](./docs/deploy-cargo.md)
 
 ## Reference
 * [Jakarta EE 9 Milestone Release Party](https://www.crowdcast.io/e/JakartaEE9_Milestonereleaseparty?utm_source=crowdcast&utm_medium=email&utm_campaign=followers)
