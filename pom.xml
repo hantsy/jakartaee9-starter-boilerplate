@@ -43,7 +43,7 @@
 
         <!-- TODO: update Arquillian BOM -->
         <arquillian-bom.version>1.7.0.Alpha5</arquillian-bom.version>
-        <junit-jupiter.version>5.6.2</junit-jupiter.version>
+        <junit-jupiter.version>5.7.0</junit-jupiter.version>
 
         <!-- Test Utilities -->
         <mockito.version>3.6.0</mockito.version>
