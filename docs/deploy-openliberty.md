@@ -30,13 +30,15 @@ Enter the Open Liberty folder, start up the Open Liberty server.
 ```bash
 # cd wlp\bin
 
-# server start // server run to show logs in the fontend console
+# server start // `server run` to show logs in the fontend console
 Starting server defaultServer.
 CWWKE0953W: This version of Open Liberty is an unsupported early release version.
 Server defaultServer started.
 ```
 
-If you are the first time to run the server,  it will create a folder *defaultServer* in the *usr/servers*  to prepare all resources of a `jakartaee-9.0` feature pack, check the *usr/servers/defaultServer/server.xml* file for details .
+If you are the first time to run server,  it will create a *server profile* for you. It will create a new folder named *defaultServer* in the *usr/servers* folder  to prepare all resources of a `jakartaee-9.0` feature pack, check the *usr/servers/defaultServer/server.xml* file for details .
+
+> NOTE:  The server profile is similar to the domain concept in other application servers, such as Glassfish, WildFly, etc.
 
 To deploy our application,  just copy the war to the *wlp/usr/servers/defaultServer/dropins* folder.
 
@@ -176,7 +178,20 @@ You will see the following message in the console.
 
 > Note: The beta feature pack use a different **groupId** (`io.openliberty.beta `)in the Maven archetype.
 
-You can also specify a  `installDirectory` property in the plugin *configuration* to use an existing Open Liberty runtime. To create such an Open Liberty server from scratch,  add a `dependency:unpack`  to retrieve the archive directly.
+To undeploy the applicaiton and stop the server, just send a `CTRL+C` to the console, you will see the following info.
+
+```bash
+[INFO] [AUDIT   ] CWWKE1100I: Waiting for up to 30 seconds for the server to quiesce.
+[INFO] [AUDIT   ] CWWKT0017I: Web application removed (default_host): http://localhost:9080/jakartaee9-starter-boilerplate/
+[INFO] [AUDIT   ] CWWKT0017I: Web application removed (default_host): http://localhost:9080/ibm/api/
+[INFO] [AUDIT   ] CWWKT0017I: Web application removed (default_host): http://localhost:9080/IBMJMXConnectorREST/
+[INFO] [AUDIT   ] CWWKZ0009I: The application jakartaee9-starter-boilerplate has stopped successfully.
+[INFO] [AUDIT   ] CWWKI0002I: The CORBA name server is no longer available at corbaloc:iiop:localhost:2809/NameService.
+```
+
+You can also specify a  `installDirectory` property in the plugin *configuration* to use an existing Open Liberty server. 
+
+In a CI server , to prepare an Open Liberty server from scratch, add a `dependency:unpack`  to retrieve the Open Liberty archive from Maven Central directly.
 
 ```xml
 <plugin>
@@ -300,7 +315,7 @@ mvn liberty:undeploy
 mvn liberty:stop 
 ```
 
-You can also configure  the `installDirectory` property to the location of your local Open Liberty server.
+You can also configure  the `installDirectory` property to use the location of your local Open Liberty server.
 
 ```xml
  <configuration>
