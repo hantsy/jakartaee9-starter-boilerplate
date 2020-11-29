@@ -83,7 +83,7 @@
         <cxf.version>3.3.5</cxf.version>
 
         <!-- TODO: Apache Tomee -->
-        <tomee.version>9.0.0-M2</tomee.version>
+        <tomee.version>9.0.0-M3</tomee.version>
         <tomee-maven-plugin.version>8.0.5</tomee-maven-plugin.version>
 
         <!-- Weld embedded-->
@@ -562,14 +562,6 @@
         </profile>
         <profile>
             <id>tomee</id>
-            <!-- 9.0.0-M2 is not found in the public maven repo, install from local file temporarily -->
-            <!-- mvn install:install-file -DgroupId=org.apache.tomee
-                    -DartifactId=apache-tomee
-                    -Dversion=9.0.0-M2
-                    -Dclassifier=plume
-                    -Dpackaging=zip
-                    -Dfile=C:\Users\hantsy\Downloads\apache-tomee-9.0.0-M2-plume(1).zip
-            -->
             <!-- Run: mvn clean package tomee:run -Ptomee to deploy applications -->
             <build>
                 <plugins>
@@ -578,8 +570,22 @@
                         <artifactId>tomee-maven-plugin</artifactId>
                         <version>${tomee-maven-plugin.version}</version>
                         <configuration>
+                            <path>/</path>
+                            <!-- Apache TomeEE runtime instance -->
+                            <!-- <catalinaBase>${project.build.directory}/apache-tomee</catalinaBase>-->
+
+                            <!-- download and run on a managed Apache TomEE server -->
                             <tomeeVersion>${tomee.version}</tomeeVersion>
+                            <tomeeArtifactId>apache-tomee</tomeeArtifactId>
+
+                            <!-- Note: TomEE 9 use the new groupId: org.apache.tomee.jakarta -->
+                            <tomeeGroupId>org.apache.tomee.jakarta</tomeeGroupId>
                             <tomeeClassifier>plume</tomeeClassifier>
+
+<!--                                                        <tomeeHost>localhost</tomeeHost>
+                                                        <user>tomee</user>
+                                                        <password>tomee</password>
+                            <path>${project.build.directory}/${project.build.finalName}.war</path>-->
                         </configuration>
                     </plugin>
                 </plugins>
