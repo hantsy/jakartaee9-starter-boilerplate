@@ -17,7 +17,7 @@ No panic, there are almost no new features added in Jakarta EE 9, but it will br
 * The versions of all specs jump to the next main version, eg. CDI 2.0->3.0.
 * Some specs are marked as pruned in Jakarta EE 9, which means they are not available in Jakarta EE ecosystem since Jakarta EE 9, such as the old XML-RPC, etc.  For more details please read the [6.1.4. Removed Jakarta Technologies](https://jakarta.ee/specifications/platform/9/platform-spec-9-SNAPSHOT.html#a2333)  section of the official Jakarta EE specifications. You should avoid these specs and use the newest replacement in your new projects.
 * Some specs are marked as *Optional* in Jakarta EE 9,  such as the traditional SOAP based Web Services related specs, please check [6.1.3. Optional Jakarta Technologies](https://jakarta.ee/specifications/platform/9/platform-spec-9-SNAPSHOT.html#a2331)  section for more details. If your want to use these specs in your new projects, you have to consult the reference document of the Jakarta EE 9 provider you are using, and make sure they are supported in the new version. 
-* The APIs of Jakarta EE 9 is still stick on Java 8, but all compatible products(implementers) should be compatible with Java 11 at runtime.
+* The APIs of Jakarta EE 9 is still stick on Java 8, ~but all compatible products(implementers) should be compatible with Java 11 at runtime~ Java 11 support is postponed to Jakarta EE 9.1.
 
 ## Upgrading to Jakarta EE 9
 
@@ -34,7 +34,7 @@ Another cool tool - [tomcat-jakartaee-migration](https://github.com/apache/tomca
 
 Here we will use Glassfish v6.0.0.M1 as target runtime , and manually upgrade my former [Jakarta EE 8 starter](https://github.com/hantsy/jakartaee8-starter) to Jakarta EE 9 platform.
 
-> Note :  Unfortunately, Glassfish v6.0.0.M1 still requires **Java 8** at runtime. Java 11 support will be added in the next milestones.
+> Note :  Unfortunately, Glassfish v6.0.0.M1 still requires **Java 8** at runtime. ~Java 11 support will be added in the next milestones~ Java 11 in Glassfish is postponed to 6.1.
 
 ### Getting Glassfish v6.0.0.M1
 
