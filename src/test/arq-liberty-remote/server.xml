@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<server description="new server">
+<server description="Jakarta EE 9 test server">
 
     <!-- Enable features -->
     <featureManager>
-        <feature>javaee-8.0</feature>
+        <feature>jakartaee-9.0</feature>
         <feature>restConnector-2.0</feature>
     </featureManager>
 
@@ -30,9 +30,16 @@
     keytool -export -alias default -file testwlp.crt -keystore key.jks -->
     <!-- Import into JDK:
     keytool -import -trustcacerts -keystore $JAVA_HOME/jre/lib/security/cacerts -storepass changeit -alias testwlp -import -file testwlp.crt -->
-    <keyStore id="defaultKeyStore" password="password" />
+    <!-- Enable the keystore -->
+    <keyStore id="defaultKeyStore" password="password" location="key.jks" type="JKS"/>
 
-    <applicationMonitor updateTrigger="mbean" />
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  httpPort="9080"
+                  httpsPort="9443" host="*"/>
+
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true" updateTrigger="mbean" />
     <logging consoleLogLevel="INFO" />
 
     <!-- This section is needed to allow upload of files to the dropins directory, the remote container adapter relies on this configuration -->
@@ -48,12 +55,5 @@
 <!--         <user name="yourUserName" password="" />  -->
 <!--    </basicRegistry>-->
     
-    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
-    <httpEndpoint id="defaultHttpEndpoint"
-                  httpPort="9080"
-                  httpsPort="9443" />
-                  
-    <!-- Automatically expand WAR files and EAR files -->
-    <applicationManager autoExpand="true"/>
 
 </server>
