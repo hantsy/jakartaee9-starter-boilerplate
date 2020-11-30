@@ -10,15 +10,15 @@
     </engine>
 
     <!-- Configuration to be used when the WidlFly remote profile is active -->
-    <container qualifier="wildfly-remote">
-        <configuration>
-            <property name="managementAddress">127.0.0.1</property>
-            <property name="managementPort">9990</property>
-            <property name="protocol">http-remoting</property>
-            <property name="username">admin</property>
-            <property name="password">Admin@123</property>
-        </configuration>
-    </container>
+<!--    <container qualifier="wildfly-remote">-->
+<!--        <configuration>-->
+<!--            <property name="managementAddress">127.0.0.1</property>-->
+<!--            <property name="managementPort">9990</property>-->
+<!--            <property name="protocol">http-remoting</property>-->
+<!--            <property name="username">admin</property>-->
+<!--            <property name="password">Admin@123</property>-->
+<!--        </configuration>-->
+<!--    </container>-->
 
     <!-- Configuration to be used when the WildFly managed profile is active -->
     <!--<container qualifier="wildfly-managed">
@@ -30,6 +30,7 @@
     <container qualifier="arq-weld">
         <configuration>
             <property name="enableConversationScope">true</property>
+            <property name="environment">SE</property>
         </configuration>
     </container>
 </arquillian>

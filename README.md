@@ -18,6 +18,7 @@ The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakarta
 * [Deploying to WildFly](./docs/deploy-wildfly.md)
 * [Deploying to Open Liberty](./docs/deploy-openliberty.md)
 * [Deploying to Apache TomEE](./docs/deploy-tomee.md)
+* [Testing with Arquillian and Weld Container](./docs/arq-weld.md)
 
 ## Reference
 * [Jakarta EE 9 Milestone Release Party](https://www.crowdcast.io/e/JakartaEE9_Milestonereleaseparty?utm_source=crowdcast&utm_medium=email&utm_campaign=followers)

@@ -8,6 +8,7 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -33,6 +34,7 @@ public class GreetingServiceTest {
     GreetingService service;
 
     @Test
+    @DisplayName("testing buildGreetingMessage")
     public void should_create_greeting() {
         LOGGER.log(Level.INFO, " Running test:: GreetingServiceTest#should_create_greeting ... ");
         GreetingMessage message = service.buildGreetingMessage("Jakarta EE");
