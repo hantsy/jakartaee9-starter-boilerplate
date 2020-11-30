@@ -183,15 +183,12 @@
             <artifactId>arquillian-junit5-container</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.arquillian.testenricher</groupId>-->
-<!--            <artifactId>arquillian-testenricher-cdi-jakarta</artifactId>-->
-<!--        </dependency>-->
         <!-- see: https://github.com/arquillian/arquillian-core/issues/248 -->
         <!-- and https://github.com/arquillian/arquillian-core/pull/246/files -->
         <dependency>
             <groupId>org.jboss.arquillian.protocol</groupId>
             <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -206,10 +203,12 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
