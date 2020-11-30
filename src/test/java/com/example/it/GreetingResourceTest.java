@@ -51,14 +51,7 @@ public class GreetingResourceTest {
     @BeforeEach
     public void setup() {
         this.client = ClientBuilder.newClient();
-        try {
-            LOGGER.log(Level.INFO, " Registering 'com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider' in OpenLiberty/CXF JAX-RS Client ");
-            Class<?> clazz = Class.forName("com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider");
-            this.client.register(clazz);
-        } catch (ClassNotFoundException e) {
-            LOGGER.warning("Failed to register 'com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider'. OpenLiberty/CXF does not register a json provider automatically. Please ignore this warning for none OpenLiberty Servers.");
-        }
-
+        //removed the Jackson json provider registry, due to OpenLiberty 21.0.0.1 switched to use Resteasy.
     }
 
     @AfterEach

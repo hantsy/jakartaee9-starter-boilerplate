@@ -79,7 +79,7 @@
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.3.1</liberty-maven-plugin.version>
         <!-- Jakarta EE 9 support is in progress, see: https://github.com/OpenLiberty/liberty-arquillian/issues/71 -->
-        <arquillian-liberty.version>1.0.6</arquillian-liberty.version>
+        <arquillian-liberty-jakarta.version>2.0.0-M1</arquillian-liberty-jakarta.version>
         <cxf.version>3.3.5</cxf.version>
 
         <!-- TODO: Apache Tomee -->
@@ -865,6 +865,177 @@
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/glassfish6</GLASSFISH_HOME>
                             </environmentVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- Run with: mvn clean test -Parq-liberty-managed -->
+            <id>arq-liberty-managed</id>
+            <properties>
+                <skip.unit.tests>true</skip.unit.tests>
+                <skip.integration.tests>false</skip.integration.tests>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>io.openliberty.arquillian</groupId>
+                    <artifactId>arquillian-liberty-managed-jakarta</artifactId>
+                    <version>${arquillian-liberty-jakarta.version}</version>
+                </dependency>
+                <!--It seems OpenLiberty 21.0.0.1 beta switched to use Resteasy as Jakarta Restful WS provider.
+                But there is no official public version for Jakarta EE 9 in the Maven central repository.
+                Use Jersey Client in the test codes here.-->
+
+                <dependency>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-binding</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.inject</groupId>
+                    <artifactId>jersey-hk2</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-client</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/arq-liberty-managed</directory>
+                        <includes>
+                            <include>*</include>
+                        </includes>
+                        <excludes>
+                            <exclude>server.xml</exclude>
+                        </excludes>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/arq-liberty-managed</directory>
+                        <includes>
+                            <include>server.xml</include>
+                        </includes>
+                        <targetPath>
+                            ${project.build.directory}/wlp/usr/servers/defaultServer
+                        </targetPath>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>${maven-dependency-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>io.openliberty.beta</groupId>
+                                            <artifactId>openliberty-runtime</artifactId>
+                                            <version>${liberty.runtime.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>io.openliberty.arquillian</groupId>
+                                            <artifactId>arquillian-liberty-support-jakarta</artifactId>
+                                            <version>${arquillian-liberty-jakarta.version}</version>
+                                            <type>zip</type>
+                                            <classifier>feature</classifier>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}/wlp/usr</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <environmentVariables>
+                                <WLP_HOME>${project.build.directory}/wlp</WLP_HOME>
+                            </environmentVariables>
+                            <systemPropertyVariables>
+                                <arquillian.launch>liberty-managed</arquillian.launch>
+                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
+                                </java.util.logging.config.file>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- Run with: mvn clean test -Parq-liberty-remote -->
+            <id>arq-liberty-remote</id>
+            <properties>
+                <skip.unit.tests>true</skip.unit.tests>
+                <skip.integration.tests>false</skip.integration.tests>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>io.openliberty.arquillian</groupId>
+                    <artifactId>arquillian-liberty-remote-jakarta</artifactId>
+                    <version>${arquillian-liberty-jakarta.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-json-binding</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jersey.inject</groupId>
+                    <artifactId>jersey-hk2</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-client</artifactId>
+                    <version>${jersey.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <testResources>
+                    <testResource>
+                        <directory>src/test/arq-liberty-remote</directory>
+                        <includes>
+                            <include>*</include>
+                        </includes>
+                        <excludes>
+                            <exclude>server.xml</exclude>
+                        </excludes>
+                    </testResource>
+                </testResources>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <arquillian.launch>liberty-remote</arquillian.launch>
+                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
+                                </java.util.logging.config.file>
+                            </systemPropertyVariables>
                         </configuration>
                     </plugin>
                 </plugins>
