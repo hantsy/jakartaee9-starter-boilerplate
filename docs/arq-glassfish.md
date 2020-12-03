@@ -2,12 +2,12 @@
 
 [Arquillian](http://www.arquillian.org)  added a new module [Arquillian Container Glassfish6](https://github.com/arquillian/arquillian-container-glassfish6) to align with the changes of Jakarta EE 9 and the features introduced in the Arquillian Core 1.7.0.  [Arquillian Container Glassfish6](https://github.com/arquillian/arquillian-container-glassfish6) is designated to run tests on Glassfish v6, which is a full-featured Jakarta EE 9 compatible application server, so you can test all Jakarta EE 9 components using this new Arquillian Glassfish container.
 
-In this post, we will try to run the our tests on the Glassfish container, both managed and remote. 
+In this post, we will try to run the our tests on the Glassfish container using both managed and remote adapters. 
 
-* When using the managed mode, Arquillian has ability to manage lifecycle of Glassfish server, such as start and stop the container during the testing execution.
-* When using the remote mode, Arquillian will try to run tests against a remote container, and gather the testing report through a proxy and send back to clients(IDE, Maven command console, etc.).
+* When using the managed adapter, Arquillian has ability to manage lifecycle of Glassfish server,eg.  start and stop the container during the testing execution.
+* When using the remote adapter, Arquillian will try to run tests against a remote container, and gather the testing report through a proxy and send back to clients(IDE, Maven command console, etc.).
 
-> Note: The original [Aruqillian embedded container](https://github.com/arquillian/arquillian-container-glassfish/tree/master/glassfish-embedded-3.1) is not ported to the latest Glassfish v6 now.
+> Note: The original [Aruqillian Glassfish embedded container](https://github.com/arquillian/arquillian-container-glassfish/tree/master/glassfish-embedded-3.1) is not ported to the latest Glassfish v6 now.
 
 ## Prerequisites
 
@@ -17,22 +17,70 @@ In this post, we will try to run the our tests on the Glassfish container, both 
 * Get to know [the basic of Arquillian](http://arquillian.org/guides/)
 
 > Note: Make sure you are using Java 8, Glassfish v6.0 does not support Java 11. Glassfish v6.1 will focus on Java 11 support.
+> 
 
-Before configuring the Arquillian Glassfish container support, please make sure you have added [Arquillian Jarkarta EE 9 and JUnit 5 dependencies](./docs/arq-weld.md). 
+## Testing Restful Web Service
 
-## Configuring Arquillian Glassfish Managed Container
+Currently, only two simple Arquillian integration tests are included in our sample project, we have introduced the CDI components in the last post.
 
-Add `arquillian-glassfish-managed-6` dependency into your project. 
+Let's move on the `GreetingResourceTest`.
 
-```xml
-<dependency>
-    <groupId>org.jboss.arquillian.container</groupId>
-    <artifactId>arquillian-glassfish-managed-6</artifactId>
-    <version>${arquillian-glassfish6.version}</version>
-    <scope>test</scope>
-</dependency>
+```java
+@ExtendWith(ArquillianExtension.class)
+public class GreetingResourceTest {
+    private final static Logger LOGGER = Logger.getLogger(GreetingResourceTest.class.getName());
+
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() {
+        return ShrinkWrap.create(WebArchive.class)
+                .addClass(GreetingMessage.class)
+                .addClass(GreetingService.class)
+                .addClasses(GreetingResource.class, JaxrsActivator.class)
+                // Enable CDI
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
+
+    @ArquillianResource
+    private URL base;
+
+    private Client client;
+
+    @BeforeEach
+    public void setup() {
+        this.client = ClientBuilder.newClient();
+        //removed the Jackson json provider registry, due to OpenLiberty 21.0.0.1 switched to use Resteasy.
+    }
+
+    @AfterEach
+    public void teardown() {
+        if (this.client != null) {
+            this.client.close();
+        }
+    }
+
+    @Test
+    public void should_create_greeting() throws MalformedURLException {
+        LOGGER.log(Level.INFO, " Running test:: GreetingResourceTest#should_create_greeting ... ");
+        final WebTarget greetingTarget = client.target(new URL(base, "api/greeting/JakartaEE").toExternalForm());
+        try (final Response greetingGetResponse = greetingTarget.request()
+                .accept(MediaType.APPLICATION_JSON)
+                .get()) {
+            assertThat(greetingGetResponse.getStatus()).isEqualTo(200);
+            assertThat(greetingGetResponse.readEntity(GreetingMessage.class).getMessage()).startsWith("Say Hello to JakartaEE");
+        }
+    }
+}
+
 ```
-If you are using Jakarta Restful WS Client in your test codes to shake hands with your Restful WebServices, you should add the jersey client related dependencies.
+
+In the above codes.
+
+* Use a `@ExtendWith(ArquillianExtension.class)` to extend the default JUnit lifecycle, `@ExtendWith` is newly introduced in JUnit 5 to replace the `@RunWith(...)`.
+* A static method annotated with `@Deployment(testable = false)` is for describing the deployment unit. Here `testable = false` indicates this tests is running as client mode, you can not inject beans like before.
+* You can get the URL of this application after it is deployed into the target server via a `@ArquillianResource` annotation.
+* A test method is annotated with `@Test` annotation.
+
+In the `should_create_greeting` method, it uses Restful WS Client API to shake hands with the Restful APIs. You should add an implementation of the Restful WS Client.  At the moment, only **jersey** completed the transformation.
 
 ```xml
 <!-- Jersey -->
@@ -62,6 +110,29 @@ If you are using Jakarta Restful WS Client in your test codes to shake hands wit
 </dependency>
 ```
 
+In the above code, there are some dependencies added.
+
+* The `jersey-client` is the  implementation of Jakarta Restful WS Client.
+* The `jersey-hk2` is the dependency inject engine in **jersey**, which will be replaced by CDI in future.
+* The `jersey-media-json-binding` is use for JSON serialization and deserialization using **Jakarta JSON Binding**.
+* The `jersey-media-sse` is responsible for handling media type `text/event-stream`.
+
+
+
+Before configuring the Arquillian Glassfish container support, please make sure you have added [Arquillian Jarkarta EE 9 and JUnit 5 dependencies](./docs/arq-weld.md). 
+
+## Configuring Glassfish Managed Container Adapter
+
+Add `arquillian-glassfish-managed-6` dependency into your project. 
+
+```xml
+<dependency>
+    <groupId>org.jboss.arquillian.container</groupId>
+    <artifactId>arquillian-glassfish-managed-6</artifactId>
+    <version>${arquillian-glassfish6.version}</version>
+    <scope>test</scope>
+</dependency>
+```
 Create  a container configuration in the *arquillian.xml* file.
 
 ```xml
@@ -128,7 +199,7 @@ mvn clean verify -Parq-glassfish-managed
 In the managed mode, Arquillian is responsible for starting and stopping the Glassfish container.
 
 
-## Configuring Arquillian Glassfish Remote Container
+## Configuring Glassfish Remote Container Adapter
 
 With Arquillian Glassfish remote container, you can run the tests against a running Glassfish server, esp. it is running on a different server. 
 
@@ -209,5 +280,5 @@ keytool -import -trustcacerts -keystore ${JAVA_HOME}/jre/lib/security/cacerts -s
 
 Now run the tests again, the certificate exception should be disappeared.
 
-Currently, only two simple Arquillian integration tests are included, grab a copy of  [the source codes from my Github](https://github.com/hantsy/jakartaee9-starter-boilerplate), and exploring them yourself.
+Grab a copy of  [the source codes from my Github](https://github.com/hantsy/jakartaee9-starter-boilerplate), and exploring them yourself.
 

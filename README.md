@@ -5,6 +5,8 @@
 ![Arquillain Integration Test with Weld Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-weld/badge.svg)
 ![Arquillain Integration Test with Glassfish Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-managed/badge.svg)
 ![Arquillain Integration Test with Glassfish Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-remote/badge.svg)
+![Arquillain Integration Test with OpenLiberty Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-managed/badge.svg)
+![Arquillain Integration Test with OpenLiberty Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-remote/badge.svg)
 
 ## What's this?
 
@@ -19,7 +21,8 @@ The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakarta
 * [Deploying to Open Liberty](./docs/deploy-openliberty.md)
 * [Deploying to Apache TomEE](./docs/deploy-tomee.md)
 * [Testing with Arquillian and Weld Container](./docs/arq-weld.md)
-* [Testing with Arquillian and Glassfish v6 Container](./docs/arq-glassfish.md)
+* [Testing with Arquillian and Glassfish v6 ](./docs/arq-glassfish.md)
+* [Testing with Arquillian and Open Liberty](./docs/arq-openliberty.md)
 
 ## Reference
 * [Jakarta EE 9 Milestone Release Party](https://www.crowdcast.io/e/JakartaEE9_Milestonereleaseparty?utm_source=crowdcast&utm_medium=email&utm_campaign=followers)
