@@ -964,7 +964,8 @@
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
                             <environmentVariables>
-                                <WLP_HOME>${project.build.directory}/wlp</WLP_HOME>
+                                <!-- WLP_HOME is not picked by arquillian liberty -->
+                                <!--<WLP_HOME>${project.build.directory}/wlp</WLP_HOME>-->
                             </environmentVariables>
                             <systemPropertyVariables>
                                 <arquillian.launch>liberty-managed</arquillian.launch>
