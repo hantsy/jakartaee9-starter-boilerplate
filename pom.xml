@@ -311,13 +311,14 @@
             </properties>
         </profile>
         <profile>
-            <id>glassfish-standalone</id>
+            <id>glassfish-local-deployer</id>
             <properties>
                 <cargo.hostname>localhost</cargo.hostname>
                 <cargo.servlet.port>8080</cargo.servlet.port>
                 <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
                 <cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs
                 </cargo.zipUrlInstaller.downloadDir>
+                <glassfish.domainDir>${project.build.directory}/glassfish-${glassfish.version}/glassfish6/glassfish/domains/domain1</glassfish.domainDir>
             </properties>
 
             <build>
@@ -333,6 +334,7 @@
                                         https://download.eclipse.org/ee4j/glassfish/glassfish-${glassfish.version}.zip
                                     </url>
                                     <downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
+                                    <extractDir>${project.build.directory}</extractDir>
                                 </zipUrlInstaller>
                                 <!-- or use artifactInstaller-->
                                 <!--<artifactInstaller>
@@ -342,12 +344,16 @@
                                 </artifactInstaller>-->
                             </container>
                             <configuration>
-                                <home>${project.build.directory}/glassfish6x-home</home>
+                                <!-- the configuration used to deploy -->
+                                <!--<home>${project.build.directory}/glassfish6x-home</home>-->
+                                <home>${glassfish.domainDir}</home>
                                 <properties>
                                     <cargo.hostname>${cargo.hostname}</cargo.hostname>
                                     <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
                                     <cargo.glassfish.admin.port>${cargo.glassfish.admin.port}
                                     </cargo.glassfish.admin.port>
+                                    <cargo.remote.username>admin</cargo.remote.username>
+                                    <cargo.remote.password></cargo.remote.password>
                                 </properties>
                             </configuration>
                         </configuration>
@@ -356,7 +362,60 @@
             </build>
         </profile>
         <profile>
-            <id>glassfish-local</id>
+            <id>glassfish-standalone</id>
+            <properties>
+                <glassfish.home>${project.build.directory}/glassfish6</glassfish.home>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.glassfish.main.distributions</groupId>
+                                            <artifactId>glassfish</artifactId>
+                                            <version>${glassfish.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <configuration>
+                            <container>
+                                <containerId>glassfish5x</containerId>
+                                <type>installed</type>
+                                <home>${glassfish.home}</home>
+                            </container>
+                            <configuration>
+                                <type>standalone</type>
+                                <properties>
+                                    <cargo.remote.password></cargo.remote.password>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>glassfish-existing</id>
             <properties>
                 <glassfish.home>${project.build.directory}/glassfish6</glassfish.home>
                 <glassfish.domainDir>${glassfish.home}/glassfish/domains</glassfish.domainDir>
@@ -771,7 +830,6 @@
             </properties>
 
             <dependencies>
-
                 <!-- Jersey -->
                 <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>

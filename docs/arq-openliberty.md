@@ -32,7 +32,7 @@ Define the `arquillian-liberty-jakarta.version` property in the *properties* sec
 
 > NOTE:  For the Jakarta EE 9,  the  [arquillian-liberty](https://github.com/OpenLiberty/liberty-arquillian)  project uses a new namespace,  please note the groupId(`arquillian-liberty-managed-jakarta `), it has a **-jakarta** postfix. 
 
-If you are using Jakarta Restful WS Client in your test codes to shake hands with your Restful WebServices, you should add a Restful WS Client implementation into the **test** scope.  But I found the OpenLiberty 21.0.0.1-beta is a little differeent from the previous Jakarta EE 8 compatible version, the Restful WS implementation is changed to Resteasy. But Resteasy still does not provide a public version for Jakarta EE 9. Till now, only Jersey completed the Jakarta EE 9 transformation. 
+If you are using Jakarta Restful WS Client in your test codes to shake hands with your Restful Web Services, you should add a Restful WS Client implementation into the **test** scope.  But I found the Open Liberty 21.0.0.1-beta is a little different from the previous Jakarta EE 8 compatible version, the Restful WS implementation is changed to Resteasy. But Resteasy still does not provide a public version for Jakarta EE 9. Till now, only Jersey completed the Jakarta EE 9 transformation. 
 
 So add the **jersey-client** related dependencies.
 
