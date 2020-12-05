@@ -2,7 +2,7 @@
 
 Payara Community 5.2020.5 has introduced tech preview functionality to run Jakarta EE 9 on Payara Server and Micro, more details please go to the [release notes](https://docs.payara.fish/community/docs/5.2020.6/release-notes/release-notes-2020-5.html#_run_jakarta_ee_9_applications_in_tech_preview).
 
-Originally Payara was a fork of the open-sourced Glassfish, but it includes a bundle of new features that not existed in Glassfish.
+Payara is driven from Glassfish project, but it includes a bundle of new features that not existed in Glassfish.
 
 * Numerous improvements and quicker bugfixes in comparison to the existing Glassfish
 * Java 11(or above) support 
@@ -11,7 +11,7 @@ Originally Payara was a fork of the open-sourced Glassfish, but it includes a bu
 * Comprehensive documentation and technical guides
 * Commercial support available for paid enterprise users. 
 
-Payara Community is also open sourced, for developers, you use it as an alternative to Glassfish to get better development experience. 
+Payara is also an open source project, for developers, you use Community edition as an alternative to Glassfish to get better development experience. 
 
 ## Prerequisites
 

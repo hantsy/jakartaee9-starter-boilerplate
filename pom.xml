@@ -603,8 +603,8 @@
                                 <groupId>org.glassfish.main.deployment</groupId>
                                 <artifactId>deployment-client</artifactId>
                                 <version>5.1.0</version>
-                                <!--<version>${glassfish.version}</version>-->
                             </dependency>
+                            <!-- jaxb is required when using Java 11 with cargo maven plugin -->     
                             <dependency>
                                 <groupId>org.glassfish.jaxb</groupId>
                                 <artifactId>jaxb-runtime</artifactId>
