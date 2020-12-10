@@ -47,7 +47,7 @@
 
         <!-- Test Utilities -->
         <mockito.version>3.6.28</mockito.version>
-        <json-path.version>2.4.0</json-path.version>
+        <json-path.version>2.5.0</json-path.version>
         <awaitility.version>4.0.3</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
         <jsonassert.version>1.5.0</jsonassert.version>
