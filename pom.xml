@@ -604,7 +604,7 @@
                                 <artifactId>deployment-client</artifactId>
                                 <version>5.1.0</version>
                             </dependency>
-                            <!-- jaxb is required when using Java 11 with cargo maven plugin -->     
+                            <!-- jaxb is required when using Java 11 with cargo maven plugin -->
                             <dependency>
                                 <groupId>org.glassfish.jaxb</groupId>
                                 <artifactId>jaxb-runtime</artifactId>
@@ -724,6 +724,91 @@
             </build>
         </profile>
         <profile>
+            <id>tomee-local</id>
+            <properties>
+                <tomee.home>${project.build.directory}/apache-tomee-plume-${tomee.version}</tomee.home>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.apache.tomee.jakarta</groupId>
+                                            <artifactId>apache-tomee</artifactId>
+                                            <version>${tomee.version}</version>
+                                            <classifier>plume</classifier>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <configuration>
+                            <container>
+                                <containerId>tomee9x</containerId>
+                                <type>installed</type>
+                                <home>${tomee.home}</home>
+                            </container>
+                            <configuration>
+                                <type>standalone</type>
+                                <properties>
+                                </properties>
+                            </configuration>
+                            <!-- reuse the existing configuration  -->
+                            <!--<configuration>
+                                <type>existing</type>
+                                <home>${tomee.home}</home>
+                                <properties>
+                                </properties>
+                            </configuration>-->
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>tomee-remote</id>
+            <!-- Add `manager-script` role to the tomee user in tomee/conf/tomcat-users.xml -->
+            <!-- Run `mvn clean cargo:deploy -Ptomee-remote` to the running TomEE-->
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.cargo</groupId>
+                        <artifactId>cargo-maven2-plugin</artifactId>
+                        <configuration>
+                            <container>
+                                <containerId>tomee9x</containerId>
+                                <type>remote</type>
+                            </container>
+                            <configuration>
+                                <type>runtime</type>
+                                <properties>
+                                    <cargo.remote.username>tomee</cargo.remote.username>
+                                    <cargo.remote.password>tomee</cargo.remote.password>
+                                </properties>
+                            </configuration>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
             <id>tomee</id>
             <!-- Run: mvn clean package tomee:run -Ptomee to deploy applications -->
             <build>
@@ -745,10 +830,13 @@
                             <tomeeGroupId>org.apache.tomee.jakarta</tomeeGroupId>
                             <tomeeClassifier>plume</tomeeClassifier>
 
-                            <!--                                                        <tomeeHost>localhost</tomeeHost>
-                                                                                    <user>tomee</user>
-                                                                                    <password>tomee</password>
-                                                        <path>${project.build.directory}/${project.build.finalName}.war</path>-->
+                            <!-- Config for remote deployment to a running server -->
+                            <!--
+                            <tomeeHost>localhost</tomeeHost>
+                            <user>tomee</user>
+                            <password>tomee</password>
+                            <path>${project.build.directory}/${project.build.finalName}.war</path>
+                            -->
                         </configuration>
                     </plugin>
                 </plugins>
