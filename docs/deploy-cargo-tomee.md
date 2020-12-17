@@ -99,7 +99,7 @@ It will perform a series of tasks, including:
 * Start the TomEE server using the created **standalone** configuration.
 * Finally deploy the war to the running server.
 
-> By default, Apache Tomcat and Apache TomEE do not contain configurations for multi domains/instances, but in fact it supports it.  The cargo generated **standalone** configuration is for a new instance.
+> By default, Apache Tomcat and Apache TomEE do not contain configurations for multi domains/instances, but it is possible, there are lots of articles in [Google search results](https://www.google.com/search?client=firefox-b-d&q=tomcat+multi+instance). The cargo generated **standalone** configuration is an example for configuring a new instance.
 
 If you want to reuse the default configuration in the TomEE server, change the `configuraiton` section to the following.
 
