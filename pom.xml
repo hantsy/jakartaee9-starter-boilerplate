@@ -344,6 +344,15 @@
                                     <artifactId>glassfish</artifactId>
                                     <version>${glassfish.version}</version>
                                 </artifactInstaller>-->
+                                <!-- Payara server example -->
+                                <!--<container>
+                                         <containerId>payara</containerId>
+                                         <artifactInstaller>
+                                             <groupId>fish.payara.distributions</groupId>
+                                             <artifactId>payara</artifactId>
+                                             <version>${payara.version}</version>
+                                         </artifactInstaller>
+                                     </container>-->     
                             </container>
                             <configuration>
                                 <!-- the configuration used to deploy -->
