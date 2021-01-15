@@ -66,7 +66,7 @@
         <arquillian-payara.version>2.2</arquillian-payara.version>
 
         <!-- TODO: upgrade Wildfly server -->
-        <wildfly.version>22.0.0.Beta1</wildfly.version>
+        <wildfly.version>22.0.0.Final</wildfly.version>
         <wildfly-maven-plugin.version>2.1.0.Beta1</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>3.0.1.Final</wildfly-arquillian.version>
         <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
