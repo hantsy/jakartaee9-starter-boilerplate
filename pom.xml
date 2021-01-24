@@ -51,7 +51,7 @@
         <awaitility.version>4.0.3</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
         <jsonassert.version>1.5.0</jsonassert.version>
-        <assertj.version>3.18.1</assertj.version>
+        <assertj.version>3.19.0</assertj.version>
 
         <!-- Jacoco code coverage report -->
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
