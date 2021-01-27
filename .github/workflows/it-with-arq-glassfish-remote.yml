@@ -26,11 +26,11 @@ jobs:
       - name: Run Glassfish server
         run: |
           export GLASSFISH_ARCHIVE=glassfish6
-          export GLASSFISH_VERSION=6.0.0-RC2
+          export GLASSFISH_VERSION=6.0.0
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
-          curl -o /tmp/${GLASSFISH_ARCHIVE}.zip -L https://download.eclipse.org/ee4j/glassfish/glassfish-${GLASSFISH_VERSION}.zip \
+          curl -o /tmp/${GLASSFISH_ARCHIVE}.zip -L https://github.com/eclipse-ee4j/glassfish/releases/download/${GLASSFISH_VERSION}/glassfish-${GLASSFISH_VERSION}.zip \
               && unzip /tmp/${GLASSFISH_ARCHIVE}.zip -d ${INSTALL_DIR} \
               && rm /tmp/${GLASSFISH_ARCHIVE}.zip \
               && true
