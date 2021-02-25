@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(ArquillianExtension.class)
 public class GreetingResourceTest {
     private final static Logger LOGGER = Logger.getLogger(GreetingResourceTest.class.getName());
-
+    
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class)
@@ -42,30 +42,32 @@ public class GreetingResourceTest {
                 // Enable CDI (Optional since Java EE 7.0)
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
-
+    
     @ArquillianResource
     private URL base;
-
+    
     private Client client;
-
+    
     @BeforeEach
     public void setup() {
+        LOGGER.info("call BeforeEach");
         this.client = ClientBuilder.newClient();
         //removed the Jackson json provider registry, due to OpenLiberty 21.0.0.1 switched to use Resteasy.
     }
-
+    
     @AfterEach
     public void teardown() {
+        LOGGER.info("call AfterEach");
         if (this.client != null) {
             this.client.close();
         }
     }
-
+    
     @Test
     @DisplayName("Given a name:`JakartaEE` should return `Say Hello to JakartaEE`")
     public void should_create_greeting() throws MalformedURLException {
-        LOGGER.log(Level.INFO, " Running test:: GreetingResourceTest#should_create_greeting ... ");
-        final WebTarget greetingTarget = client.target(new URL(base, "api/greeting/JakartaEE").toExternalForm());
+        LOGGER.log(Level.INFO, " client: {0}, baseURL: {1}", new Object[]{client, base});
+        final WebTarget greetingTarget = this.client.target(new URL(this.base, "api/greeting/JakartaEE").toExternalForm());
         try (final Response greetingGetResponse = greetingTarget.request()
                 .accept(MediaType.APPLICATION_JSON)
                 .get()) {
