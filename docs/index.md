@@ -1,7 +1,5 @@
 
 
-# Jakarta EE 9  Starter 
-
 
 
 * [Upgrading to Jakarta EE 9](./docs/upgrade.md)
