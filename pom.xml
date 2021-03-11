@@ -16,13 +16,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!-- Set java compiler version to 11 if you do not needs Java 8 support-->
-        <!-- <maven.compiler.release>11</maven.compiler.release>-->
+        <!-- Set java compiler version to 11 if you are using Glassfish v6.1 -->
+        <maven.compiler.release>11</maven.compiler.release>
 
-        <!--Glassfish v6.0 still requires Java 8, Java 11 support will be available in v6.1 -->
+        <!--Glassfish v6.0.x still requires Java 8, Java 11 support will be available in v6.1 -->
         <!--NOTE:The `maven.compiler.release` property is not available when using Java 8-->
+        <!--
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        -->
 
         <!-- The default value is changed to `false` since maven-war-plugin 3.0.0 -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -57,7 +59,7 @@
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>6.0.0</glassfish.version>
+        <glassfish.version>6.1.0-M1</glassfish.version>
         <arquillian-glassfish6.version>1.0.0.Alpha1</arquillian-glassfish6.version>
         <jersey.version>3.0.1</jersey.version>
 
