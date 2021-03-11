@@ -3,7 +3,7 @@
 ![Compile and build](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/Build/badge.svg)
 
 ![Unit Test](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/unit-test/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hantsy_jakartaee9-starter-boilerplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=hantsy_sjakartaee9-starter-boilerplate)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hantsy_jakartaee9-starter-boilerplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=hantsy_jakartaee9-starter-boilerplate)
 
 ![Arquillain Integration Test with Weld Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-weld/badge.svg)
 ![Arquillain Integration Test with Glassfish Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-managed/badge.svg)
