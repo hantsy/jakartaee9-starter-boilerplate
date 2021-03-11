@@ -34,7 +34,7 @@ jobs:
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
-          curl -o /tmp/ol.zip -L https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2020-11-11_0736/openliberty-jakartaee9-21.0.0.1-beta.zip \
+          curl -o /tmp/ol.zip -L https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-02-09_1100/openliberty-21.0.0.3-beta.zip \
               && unzip /tmp/ol.zip -d ${INSTALL_DIR} \
               && rm /tmp/ol.zip \
               && true
@@ -51,7 +51,7 @@ jobs:
             JAVA_HOME = `dirname $JAVA_CMD`/..
           fi
           echo "JAVA_HOME: $JAVA_HOME"
-          keytool -import -trustcacerts -keystore ${JAVA_HOME}/jre/lib/security/cacerts -storepass changeit -alias testwlp -file testwlp.crt -noprompt
+          keytool -import -trustcacerts -keystore ${JAVA_HOME}/lib/security/cacerts -storepass changeit -alias testwlp -file testwlp.crt -noprompt
 
       - name: Run integration test with -Parq-liberty-remote
         run: mvn clean verify -Parq-liberty-remote
