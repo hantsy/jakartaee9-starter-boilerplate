@@ -67,7 +67,7 @@ public class GreetingResourceTest {
     @DisplayName("Given a name:`JakartaEE` should return `Say Hello to JakartaEE`")
     public void should_create_greeting() throws MalformedURLException {
         LOGGER.log(Level.INFO, " client: {0}, baseURL: {1}", new Object[]{client, base});
-        final WebTarget greetingTarget = this.client.target(new URL(this.base, "api/greeting/JakartaEE").toExternalForm());
+        final var greetingTarget = this.client.target(new URL(this.base, "api/greeting/JakartaEE").toExternalForm());
         try (final Response greetingGetResponse = greetingTarget.request()
                 .accept(MediaType.APPLICATION_JSON)
                 .get()) {
