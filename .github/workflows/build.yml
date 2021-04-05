@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        distribution: [ 'zulu', 'adopt' ]
         # test against latest update of each major Java version, as well as specific updates of LTS versions:
         java: [11, 16]
     steps:
@@ -24,6 +25,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
+          distribution: ${{matrix.distribution}}
           java-version: ${{matrix.java}}
 
       - name: Cache Maven packages
