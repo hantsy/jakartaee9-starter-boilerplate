@@ -13,8 +13,6 @@ Make sure you have installed the following software.
 * Download and install [Apache Maven](http://maven.apache.org/) .
 * Get to know the basic of [Cargo maven plugin](https://codehaus-cargo.github.io/). 
 
- >In this post we still use the Cargo `glassfish5x` container to perform the deployment. Cargo will include a new `glassfish6x` container in 1.8.3 for Glassfish v6.
-
 ## Deploying the applications
 
 Clone the [Jakarta EE9 starter boilerplate](https://github.com/hantsy/jakartaee9-starter-boilerplate) repository into your local disk.
@@ -22,9 +20,9 @@ Clone the [Jakarta EE9 starter boilerplate](https://github.com/hantsy/jakartaee9
 Open a terminal and switch to the project root folder, execute the following command to build and deploy this Jakarta EE 9 application to Glassfish v6 .
 
 ```bash
-mvn clean verify org.codehaus.cargo:cargo-maven2-plugin:1.8.2:run 
--Dcargo.maven.containerId=glassfish5x   
--Dcargo.maven.containerUrl=https://download.eclipse.org/ee4j/glassfish/glassfish-6.0.0-RC2.zip  
+mvn clean verify org.codehaus.cargo:cargo-maven3-plugin:1.9.3:run 
+-Dcargo.maven.containerId=glassfish6x   
+-Dcargo.maven.containerUrl=https://repo.maven.apache.org/maven2/org/glassfish/main/distributions/glassfish/6.0.0/glassfish-6.0.0.zip
 -Dcargo.servlet.port=8080
 ```
 
@@ -33,10 +31,10 @@ This command will use Maven to build the project, and then call  cargo maven plu
 You will see info similar to the following when the deployment is successful.
 
 ```bash
-[INFO] --- cargo-maven2-plugin:1.8.2:run (default-cli) @ jakartaee9-starter-boilerplate ---
-[INFO] [en2.ContainerRunMojo] Resolved container artifact org.codehaus.cargo:cargo-core-container-glassfish:jar:1.8.2 for container glassfish5x
-[INFO] [talledLocalContainer] Parsed GlassFish version = [6.0.0.RC2]
-[INFO] [talledLocalContainer] GlassFish 6.0.0.RC2 starting...
+[INFO] --- cargo-maven3-plugin:1.9.3:run (default-cli) @ jakartaee9-starter-boilerplate ---
+[INFO] [en2.ContainerRunMojo] Resolved container artifact org.codehaus.cargo:cargo-core-container-glassfish:jar:1.8.2 for container glassfish6x
+[INFO] [talledLocalContainer] Parsed GlassFish version = [6.0.0]
+[INFO] [talledLocalContainer] GlassFish 6.0.0 starting...
 [INFO] [talledLocalContainer] Using port 4848 for Admin.
 [INFO] [talledLocalContainer] Using port 8080 for HTTP Instance.
 [INFO] [talledLocalContainer] Using port 7676 for JMS.
@@ -64,31 +62,30 @@ You will see info similar to the following when the deployment is successful.
 [INFO] [talledLocalContainer] Command deploy executed successfully.
 [INFO] [talledLocalContainer] Application deployed with name cargocpc.
 [INFO] [talledLocalContainer] Command deploy executed successfully.
-[INFO] [talledLocalContainer] GlassFish 6.0.0.RC2 started on port [8080]
+[INFO] [talledLocalContainer] GlassFish 6.0.0 started on port [8080]
 [INFO] Press Ctrl-C to stop the container...
 ```
 
-The above command is equivalent to the following config in the project *pom.xml* file.
+As the GlassFish 6.0.0 artifacts are available on the maven central, the above command can be replaced following config in the project *pom.xml* file.
 
 ```xml
  <properties>
 	<cargo.servlet.port>8080</cargo.servlet.port>
-	<cargo.zipUrlInstaller.downloadDir>${project.build.directory}/../installs
-	</cargo.zipUrlInstaller.downloadDir>
 </properties>
 
 <build>
 	<plugins>
 		<plugin>
 			<groupId>org.codehaus.cargo</groupId>
-			<artifactId>cargo-maven2-plugin</artifactId>
+			<artifactId>cargo-maven3-plugin</artifactId>
 			<configuration>
 				<container>
-					<containerId>glassfish5x</containerId>
-					<zipUrlInstaller>
-						<url>https://download.eclipse.org/ee4j/glassfish/glassfish-6.0.0-RC2.zip</url>
-						<downloadDir>${cargo.zipUrlInstaller.downloadDir}</downloadDir>
-					</zipUrlInstaller>
+					<containerId>glassfish6x</containerId>
+					<artifactInstaller>
+                        <groupId>org.glassfish.main.distributions</groupId>
+                        <artifactId>glassfish</artifactId>
+                        <version>6.0.0</version>
+					</artifactInstaller>
 				</container>
 				<configuration>
 					<home>${project.build.directory}/glassfish6x-home</home>
@@ -122,10 +119,10 @@ If you have prepared a copy of Glassfish v6,  you can reuse the **existing** Gla
 	<plugins>
 		<plugin>
 			<groupId>org.codehaus.cargo</groupId>
-			<artifactId>cargo-maven2-plugin</artifactId>
+			<artifactId>cargo-maven3-plugin</artifactId>
 			<configuration>
 				<container>
-					<containerId>glassfish5x</containerId>
+					<containerId>glassfish6x</containerId>
 					<type>installed</type>
 					<home>${glassfish.home}</home>
 				</container>
@@ -154,7 +151,7 @@ If you want to deploy your applications to a running Glassfish v6 server(esp. it
 ```xml
 <plugin>
 	<groupId>org.codehaus.cargo</groupId>
-	<artifactId>cargo-maven2-plugin</artifactId>
+	<artifactId>cargo-maven3-plugin</artifactId>
 	<configuration>
 		<container>
 			<containerId>glassfish5x</containerId>
@@ -187,7 +184,7 @@ If you want to deploy your applications to a running Glassfish v6 server(esp. it
 
 * `cargo.hostname` is the target server you want to deploy to 
 * `cargo.remote.username` and `cargo.remote.password` is administrator account used to deploy
-* The remote deployer depends on a `deployment-client` archetype, here we use the version `5.1.0`,  there is no new version for Glassfish v6, and JSR 88 spec is removed in Jakarta EE 9.
+* The remote deployer depends on a `deployment-client` archetype, here we use the version `5.1.0`,  there is no new version for Glassfish v6, and JSR 88 spec is removed in Jakarta EE 9. That's also why we use the `glassfish5x` container of Cargo (instead of `glassfish6x`)
 
 For a remote container, you can not control the start and stop lifecycle as the former configurations, use `deploy` and `undeploy` goal to perform the deploy and undeploy tasks.
 
