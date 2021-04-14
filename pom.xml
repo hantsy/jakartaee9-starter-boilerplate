@@ -306,13 +306,6 @@
 
     <profiles>
         <profile>
-            <id>java11</id>
-            <properties>
-                <maven.compiler.source>11</maven.compiler.source>
-                <maven.compiler.target>11</maven.compiler.target>
-            </properties>
-        </profile>
-        <profile>
             <id>glassfish-local-deployer</id>
             <properties>
                 <cargo.hostname>localhost</cargo.hostname>
