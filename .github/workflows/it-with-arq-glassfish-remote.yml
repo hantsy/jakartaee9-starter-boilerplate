@@ -23,7 +23,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: 11
-          
+      - run: java -version
+      - run: netstat -nao |grep 4848
       - name: Run Glassfish server
         run: |
           export GLASSFISH_ARCHIVE=glassfish6
@@ -48,6 +49,7 @@ jobs:
 #          	  && asadmin --passwordfile /tmp/passwordfile start-domain domain1 \
 #          	  && true
 
+      - run: netstat -nao |grep 4848
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
