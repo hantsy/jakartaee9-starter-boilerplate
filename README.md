@@ -11,6 +11,8 @@
 ![Arquillain Integration Test with OpenLiberty Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-managed/badge.svg)
 ![Arquillain Integration Test with OpenLiberty Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-remote/badge.svg)
 
+> Failure on Payara/GlassFish, see https://github.community/t/arquillian-test-against-payara-glasfish-failed-due-to-4848-port-is-already-in-use/174879
+
 ## What's this?
 
 The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakartaee9-starter-boilerplate) is providing a simple template to  help developers to start a Jakarta EE 9 projects in seconds. And  it also includes my personal development notes when migrating to Jakarta EE 9 platform.
