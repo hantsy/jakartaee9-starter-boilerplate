@@ -47,8 +47,8 @@ jobs:
 #          	  && asadmin --passwordfile /tmp/new_passwordfile change-admin-password --domain_name domain1 \
 #          	  && asadmin --passwordfile /tmp/passwordfile start-domain domain1 \
 #          	  && true
-
-      - run: netstat -nao |grep 4848
+#
+#      - run: netstat -nao |grep 4848
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
