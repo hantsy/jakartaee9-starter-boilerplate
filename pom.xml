@@ -61,7 +61,7 @@
         <!-- Glassfish server -->
         <glassfish.version>6.1.0-RC1</glassfish.version>
         <arquillian-glassfish6.version>1.0.0.Alpha1</arquillian-glassfish6.version>
-        <jersey.version>3.0.1</jersey.version>
+        <jersey.version>3.0.2</jersey.version>
 
         <!-- TODO: upgrade Payara server -->
         <payara.version>5.2021.2</payara.version>
