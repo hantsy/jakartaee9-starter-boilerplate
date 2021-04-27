@@ -41,7 +41,7 @@
         <cargo-maven3-plugin.version>1.9.3</cargo-maven3-plugin.version>
 
         <!-- Jakarta EE API -->
-        <jakartaee-api.version>9.0.0</jakartaee-api.version>
+        <jakartaee-api.version>9.1.0</jakartaee-api.version>
 
         <!-- TODO: update Arquillian BOM -->
         <arquillian-bom.version>1.7.0.Alpha9</arquillian-bom.version>
