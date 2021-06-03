@@ -27,7 +27,7 @@ jobs:
       - name: Run Glassfish server
         run: |
           export GLASSFISH_ARCHIVE=glassfish6
-          export GLASSFISH_VERSION=6.1.0-M1
+          export GLASSFISH_VERSION=6.1.0
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
