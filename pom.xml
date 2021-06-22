@@ -64,7 +64,7 @@
         <jersey.version>3.0.2</jersey.version>
 
         <!-- TODO: upgrade Payara server -->
-        <payara.version>5.2021.4</payara.version>
+        <payara.version>6.2021.1.Alpha1</payara.version>
         <arquillian-payara.version>2.2</arquillian-payara.version>
 
         <!-- TODO: upgrade Wildfly server -->
@@ -347,7 +347,7 @@
                                              <artifactId>payara</artifactId>
                                              <version>${payara.version}</version>
                                          </artifactInstaller>
-                                     </container>-->     
+                                     </container>-->
                             </container>
                             <configuration>
                                 <!-- the configuration used to deploy -->
@@ -854,7 +854,7 @@
             </properties>
         </profile>
         <profile>
-            <id>coverage</id>   
+            <id>coverage</id>
             <build>
                 <plugins>
                     <plugin>
