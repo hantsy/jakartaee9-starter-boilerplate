@@ -1125,7 +1125,7 @@
             </build>
         </profile>
         <profile>
-            <!-- Run with: mvn clean test -Parq-liberty-managed -->
+            <!-- Run with: mvn clean verify -Parq-liberty-managed -->
             <id>arq-liberty-managed</id>
             <properties>
                 <skip.unit.tests>true</skip.unit.tests>
@@ -1237,7 +1237,7 @@
             </build>
         </profile>
         <profile>
-            <!-- Run with: mvn clean test -Parq-liberty-remote -->
+            <!-- Run with: mvn clean verify -Parq-liberty-remote -->
             <id>arq-liberty-remote</id>
             <properties>
                 <skip.unit.tests>true</skip.unit.tests>
