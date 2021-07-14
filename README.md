@@ -10,6 +10,9 @@
 ![Arquillain Integration Test with Glassfish Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-remote/badge.svg)
 ![Arquillain Integration Test with OpenLiberty Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-managed/badge.svg)
 ![Arquillain Integration Test with OpenLiberty Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-remote/badge.svg)
+![Arquillain Integration Test with WildFly Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-managed/badge.svg)
+![Arquillain Integration Test with WildFly Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-remote/badge.svg)
+![Arquillain Integration Test with WildFly Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-embedded/badge.svg)
 
 ## What's this?
 
