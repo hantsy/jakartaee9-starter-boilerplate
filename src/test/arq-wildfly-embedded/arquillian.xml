@@ -1,18 +1,16 @@
 <arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns="http://jboss.org/schema/arquillian"
             xsi:schemaLocation="http://jboss.org/schema/arquillian  https://jboss.org/schema/arquillian/arquillian_1_0.xsd">
-    <defaultProtocol type="Servlet 5.0"/>
+    <!--    <defaultProtocol type="Servlet 5.0"/>-->
 
     <engine>
         <property name="deploymentExportPath">target/</property>
     </engine>
 
-    <container qualifier="liberty-managed">
+    <container qualifier="wildfly-embedded">
         <configuration>
-            <property name="wlpHome">target/wlp/</property>
-            <property name="serverName">defaultServer</property>
-            <property name="httpPort">9080</property>
-            <property name="serverStartTimeout">300</property>
+            <!--<property name="jbossHome">${jbossHome:target/wildfly-18.0.1.Final}</property>-->
+            <property name="serverConfig">standalone-full.xml</property>
         </configuration>
     </container>
 
