@@ -32,6 +32,7 @@ The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakarta
 * [Testing with Arquillian and Weld Container](./docs/arq-weld.md)
 * [Testing with Arquillian and Glassfish v6 ](./docs/arq-glassfish.md)
 * [Testing with Arquillian and Open Liberty](./docs/arq-openliberty.md)
+* [Testing with Arquillian and WildFly](./docs/arq-wildfly.md)
 
 ## Reference
 * [Jakarta EE 9 Milestone Release Party](https://www.crowdcast.io/e/JakartaEE9_Milestonereleaseparty?utm_source=crowdcast&utm_medium=email&utm_campaign=followers)
