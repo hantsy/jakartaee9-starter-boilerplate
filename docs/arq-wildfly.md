@@ -114,7 +114,7 @@ Alternatively, to get a clean environment to run your tests every time,  you can
 
 > Note: we use `wildfly-preview-dist` artifactId here to download the WildFly Jakarta EE 9 preview version.
 
-Open your terminal and witch to the project root folder.
+Open your terminal and switch to the project root folder.
 
 Run the following command to run the tests against WildFly server.
 
