@@ -1,20 +1,20 @@
 <arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns="http://jboss.org/schema/arquillian"
             xsi:schemaLocation="http://jboss.org/schema/arquillian  https://jboss.org/schema/arquillian/arquillian_1_0.xsd">
-    <defaultProtocol type="Servlet 5.0"/>
+    <!--    <defaultProtocol type="Servlet 5.0"/>-->
 
     <engine>
         <property name="deploymentExportPath">target/</property>
     </engine>
 
-    <container qualifier="liberty-remote">
+    <!-- Configuration to be used when the WidlFly remote profile is active -->
+    <container qualifier="wildfly-remote">
         <configuration>
-            <property name="hostName">localhost</property>
-            <property name="serverName">testServer</property>
+            <property name="managementAddress">127.0.0.1</property>
+            <property name="managementPort">9990</property>
+            <property name="protocol">http-remoting</property>
             <property name="username">admin</property>
-            <property name="password">admin</property>
-            <property name="httpPort">9080</property>
-            <property name="httpsPort">9443</property>
+            <property name="password">Admin@123</property>
         </configuration>
     </container>
 
