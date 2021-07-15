@@ -1,14 +1,14 @@
 #  Testing Jakarta EE 9 Applications with Arquillian and WildFly
 
-With the long-awaited [Jakarta EE 9 support](https://issues.redhat.com/projects/WFARQ/issues/WFARQ-89) issue was fixed in the newest 5.0.0.Alpha1 version of [WildFly Arquillian project](https://github.com/wildfly/wildfly-arquillian),  finally we can test Jakarta EE 9 applications against WildFly application server with the newest Arquillian adapters. 
+As the long-awaited [Jakarta EE 9 support](https://issues.redhat.com/projects/WFARQ/issues/WFARQ-89) issue was fixed in the newest 5.0.0.Alpha1 version of [WildFly Arquillian project](https://github.com/wildfly/wildfly-arquillian),  finally we can test Jakarta EE 9 applications against WildFly application server with the newest Arquillian adapters. 
 
 In this post, we will explore testing Jakarta EE 9 application with various  WildFly Arquillian adapters.
 
 * *WildFly Arquillian Managed Container*, in this case the Arquillian controller is responsible for starting and stopping the WildFly server via administrative tools.
 * *WildFly Arquillian Remote Container*, Arquillian does not start and stop the WildFly server, it deploys the test archive to a running WildFly server through available remote protocols, such as HTTP, JMX etc.
 * *WildFly Arquillian Embedded Container*, similar to the managed adapter, but embedded adapter controls the WildFly server via embedded WildFly APIs, generally the test itself and the server would run on the same thread.
-* *WildFly Arquillian Managed Domain Container*, use a single domain instead of the standalone server.
-* *WildFly Arquillian Remote Domain Container*, use a single domain instead of the standalone server.
+* *WildFly Arquillian Domain Managed Container*, use a single domain instead of the standalone server.
+* *WildFly Arquillian Domain Remote Container*, use a single domain instead of the standalone server.
 * *WildFly Arquillian Bootable JAR Container*, it deploys the test archive on the bootable JAR built by maven bootable jar plugin.
 
 Here we focus on the first three adapters.
