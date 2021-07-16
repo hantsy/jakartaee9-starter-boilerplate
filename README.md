@@ -13,6 +13,7 @@
 ![Arquillain Integration Test with WildFly Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-managed/badge.svg)
 ![Arquillain Integration Test with WildFly Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-remote/badge.svg)
 ![Arquillain Integration Test with WildFly Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-embedded/badge.svg)
+![Arquillain Integration Test with WildFly Bootable  Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-bootable-jar/badge.svg)
 
 ## What's this?
 
@@ -49,4 +50,9 @@ The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakarta
 
 * [Open Liberty Cheet Sheet](https://aguibert.github.io/openliberty-cheat-sheet)
 
+* [WildFly Bootable JAR is final!](https://www.wildfly.org/news/2020/10/19/bootable-jar-2.0-released/)
+
+* [WildFly Bootable JAR cluster application with JKube openshift-maven-plugin](https://www.wildfly.org/news/2021/02/01/Bootable-jar-jkube-clustering-openshift/)
+
   
+
