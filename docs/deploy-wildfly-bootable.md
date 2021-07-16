@@ -40,7 +40,9 @@ Firstly add `wildfly-jar-maven-plugin` configuration.
 </plugin>
 ```
 
-The *feature-pack-location* defines the infrastructure feature it will be used to build the application, and *layers* specifies which layers will be activated,  go to the bootable jar document to know more info about [Galleon layers](https://docs.wildfly.org/bootablejar/#wildfly_jar_composing_custom_server_galleon).
+The *feature-pack-location* defines the infrastructure feature it will be used to build the application, and *layers* specifies which layers will be activated
+
+> More details about layers, please refer to the bootable jar documentation and read the [Galleon layers](https://docs.wildfly.org/bootablejar/#wildfly_jar_composing_custom_server_galleon) chapter.
 
 > In the feature pack, we use `wildfly-preview` to use the Jakarta EE 9 preview.
 
