@@ -27,6 +27,7 @@ The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakarta
 * [Remote Deployment to Glassfish v6.0 using Cargo local deployer](./docs/deploy-cargo-gf6.md)
 * [Deploying to Payara using Cargo maven plugin](./docs/deploy-payara.md)
 * [Deploying to WildFly](./docs/deploy-wildfly.md)
+* [Deploying with WildFly Bootable Jar](./docs/deploy-wildfly-bootable.md)
 * [Deploying to Open Liberty](./docs/deploy-openliberty.md)
 * [Deploying to Apache TomEE using Cargo maven plugin](./docs/deploy-cargo-tomee.md)
 * [Deploying to Apache TomEE](./docs/deploy-tomee.md)
