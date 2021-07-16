@@ -7,6 +7,7 @@
 * [Remote Deployment to Glassfish v6.0 using Cargo local deployer](./deploy-cargo-gf6.md)
 * [Deploying to Payara using Cargo maven plugin](./deploy-payara.md)
 * [Deploying to WildFly](./deploy-wildfly.md)
+* [Deploying with WildFly Bootable Jar](./deploy-wildfly-bootable.md)
 * [Deploying to Open Liberty](./deploy-openliberty.md)
 * [Deploying to Apache TomEE](./deploy-tomee.md)
 * [Testing with Arquillian and Weld Container](./arq-weld.md)
