@@ -44,7 +44,7 @@ The *feature-pack-location* defines the infrastructure feature it will be used t
 
 > More details about layers, please refer to the bootable jar documentation and read the [Galleon layers](https://docs.wildfly.org/bootablejar/#wildfly_jar_composing_custom_server_galleon) chapter.
 
-> In the feature pack, we use `wildfly-preview` to use the Jakarta EE 9 preview.
+> NOTE: In the feature pack, we use `wildfly-preview` to use the Jakarta EE 9 preview.
 
 Run the following command to build the application.
 
@@ -66,7 +66,7 @@ Use `curl` command to test the sample endpoint.
 curl -v http://localhost:8080/api/greeting/JakartaEE
 ```
 
-> Note, in the bootable jar, by default it sets the application context path to root("/").
+> NOTE: In the generated bootable jar, by default it sets the application context path to root("/").
 
 ## Deploying to OpenShift
 
