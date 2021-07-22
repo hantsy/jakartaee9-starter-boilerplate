@@ -1,0 +1,60 @@
+name: it-with-arq-payara-remote
+
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  it-with-arq-payara-remote:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 11
+          
+      - name: Run Payara server
+        run: |
+          export GLASSFISH_ARCHIVE=payara6
+          export GLASSFISH_VERSION=6.2021.1.Alpha1
+          export INSTALL_DIR="/opt/appsvr"
+          mkdir ${INSTALL_DIR}
+
+
+          curl -o /tmp/${GLASSFISH_ARCHIVE}.zip -L https://repo1.maven.org/maven2/fish/payara/distributions/payara/${GLASSFISH_VERSION}/payara-${GLASSFISH_VERSION}.zip \
+              && unzip /tmp/${GLASSFISH_ARCHIVE}.zip -d ${INSTALL_DIR} \
+              && rm /tmp/${GLASSFISH_ARCHIVE}.zip \
+              && true
+
+          chmod -R a+rw ${INSTALL_DIR}
+          chmod -R a+x ${INSTALL_DIR}/${GLASSFISH_ARCHIVE}/bin/*
+          export PATH=$PATH:${INSTALL_DIR}/${GLASSFISH_ARCHIVE}/bin/
+          asadmin start-domain domain1 && true
+#          echo "set AS_ADMIN_PASSWORD=adminadmin" \${GLASSFISH_VERSION}
+#              && echo "AS_ADMIN_PASSWORD=\nAS_ADMIN_NEWPASSWORD=adminadmin" > /tmp/new_passwordfile \
+#              && echo "AS_ADMIN_PASSWORD=adminadmin" > /tmp/passwordfile \
+#              && cat /tmp/new_passwordfile && cat /tmp/passwordfile \
+#          	  && asadmin --passwordfile /tmp/new_passwordfile change-admin-password --domain_name domain1 \
+#          	  && asadmin --passwordfile /tmp/passwordfile start-domain domain1 \
+#          	  && true
+
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Run integration test with -Parq-payara-remote
+        run: mvn -B clean verify -Parq-payara-remote
