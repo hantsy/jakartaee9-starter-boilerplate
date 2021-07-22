@@ -1,0 +1,53 @@
+name: it-with-arq-wildfly-remote
+
+on:
+  push:
+    paths-ignore:
+      - "docs/**"
+    branches:
+      - master
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  it-with-arq-wildfly-remote:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 11
+      - run: java -version
+      - name: Run WildFly server
+        run: |
+          export WF_ARCHIVE=wildfly-preview
+          export WF_VERSION=24.0.0.Final
+          export INSTALL_DIR="/opt/appsvr"
+          mkdir ${INSTALL_DIR}
+
+          curl -o /tmp/${WF_ARCHIVE}.zip -L https://download.jboss.org/wildfly/${WF_VERSION}/wildfly-preview-${WF_VERSION}.zip \
+              && unzip /tmp/${WF_ARCHIVE}.zip -d ${INSTALL_DIR} \
+              && rm /tmp/${WF_ARCHIVE}.zip \
+              && true
+
+          chmod -R a+rw ${INSTALL_DIR}
+          chmod -R a+x ${INSTALL_DIR}/${WF_ARCHIVE}-${WF_VERSION}/bin/*
+          export WF_HOME=${INSTALL_DIR}/${WF_ARCHIVE}-${WF_VERSION}
+          ${WF_HOME}/bin/add-user.sh admin Admin@123 --silent
+          ${WF_HOME}/bin/standalone.sh -c standalone-full.xml &
+          sleep 10
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Run integration test with -Parq-wildfly-remote
+        run: mvn clean verify -Parq-wildfly-remote

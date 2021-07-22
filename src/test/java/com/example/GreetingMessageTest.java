@@ -10,7 +10,7 @@ public class GreetingMessageTest {
 
     @Test
     public void testGreetingMessage() {
-        GreetingMessage message = GreetingMessage.of("Say Hello to JatartaEE");
+        var message = GreetingMessage.of("Say Hello to JatartaEE");
         assertThat(message.getMessage()).isEqualTo("Say Hello to JatartaEE");
     }
 }

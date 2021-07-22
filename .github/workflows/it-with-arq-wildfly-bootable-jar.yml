@@ -1,4 +1,4 @@
-name: it-with-arq-payara-embedded
+name: it-with-arq-wildfly-bootable-jar
 
 on:
   push:
@@ -13,7 +13,7 @@ on:
       - reopened
 
 jobs:
-  it-with-arq-payara-embedded:
+  it-with-arq-wildfly-bootable-jar:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +25,11 @@ jobs:
           java-version: 11
 
       - name: Cache Maven packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Run integration test with -Parq-payara-embedded
-        run: mvn -B clean verify -Parq-payara-embedded
+      - name: Run integration test with -Parq-wildfly-bootable-jar
+        run: mvn clean verify -Parq-wildfly-bootable-jar

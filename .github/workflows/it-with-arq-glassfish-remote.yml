@@ -18,19 +18,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
         with:
-          java-version: 1.8
-          
+          distribution: 'zulu'
+          java-version: 11
+      - run: java -version
       - name: Run Glassfish server
         run: |
           export GLASSFISH_ARCHIVE=glassfish6
-          export GLASSFISH_VERSION=6.0.0-RC2
+          export GLASSFISH_VERSION=6.1.0
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
-          curl -o /tmp/${GLASSFISH_ARCHIVE}.zip -L https://download.eclipse.org/ee4j/glassfish/glassfish-${GLASSFISH_VERSION}.zip \
+          curl -o /tmp/${GLASSFISH_ARCHIVE}.zip -L https://github.com/eclipse-ee4j/glassfish/releases/download/${GLASSFISH_VERSION}/glassfish-${GLASSFISH_VERSION}.zip \
               && unzip /tmp/${GLASSFISH_ARCHIVE}.zip -d ${INSTALL_DIR} \
               && rm /tmp/${GLASSFISH_ARCHIVE}.zip \
               && true
@@ -46,9 +47,10 @@ jobs:
 #          	  && asadmin --passwordfile /tmp/new_passwordfile change-admin-password --domain_name domain1 \
 #          	  && asadmin --passwordfile /tmp/passwordfile start-domain domain1 \
 #          	  && true
-
+#
+#      - run: netstat -nao |grep 4848
       - name: Cache Maven packages
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
