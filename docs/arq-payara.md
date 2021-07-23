@@ -11,7 +11,7 @@ Payara Arquillian project provides several Arquillian Container adapters for Pay
 
 ## Example Codes
 
-The [example codes](https://github.com/hantsy/jakartaee9-starter-boilerplate) are shared via my Github. There are 4 Maven profiles provided in the project *pom.xml* file for these 4 adapters.
+The [example codes](https://github.com/hantsy/jakartaee9-starter-boilerplate) are shared via my Github. The Arquillian configuration for these 4 adapters are provided via 4 Maven profiles.
 
 ## Prerequisites
 
