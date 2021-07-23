@@ -14,4 +14,5 @@
 * [Testing with Arquillian and Glassfish v6 ](./arq-glassfish.md)
 * [Testing with Arquillian and Open Liberty](./arq-openliberty.md)
 * [Testing with Arquillian and WildFly](./arq-wildfly.md)
+* [Testing with Arquillian and Payara ](./arq-payara.md)
 
