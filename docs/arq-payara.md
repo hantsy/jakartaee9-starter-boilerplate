@@ -1,17 +1,19 @@
-# Testing Jakarta EE 9 Applications with Arquillian and Payara 6
+#  Testing Jakarta EE 9 Applications with Arquillian and Payara 6
 
-In the latest stable Payara 5, it added the early Jakarta EE 9 support. Payara 6.2021.Alpha1 brought full Jakarta EE 9/9.1 support by default. As [Arquillian support for Payara 6 issue](https://github.com/payara/ecosystem-support/issues/28) was fixed, testing Jakarta EE 9 applications against Payara servers is available.
+In the latest Payara 5, it added early Jakarta EE 9 support. Payara 6.2021.Alpha1 brought full Jakarta EE 9/9.1 support by default. As [ Arquillian support for Payara 6 issue](https://github.com/payara/ecosystem-support/issues/28) was fixed, testing Jakarta EE 9 applications against Payara servers is available.
 
-Payara Arquillian project provides several Arquillian Container adapters for Payara Server.
+Payara Arquillian  project provides several container adapters.
 
 * Payara Managed Container Adapter
 * Payara Remote Container Adapter
 * Payara Embedded Container Adapter
 * Payara Micro Managed Container Adapter
 
+
+
 ## Example Codes
 
-The [example codes](https://github.com/hantsy/jakartaee9-starter-boilerplate) are shared via my Github. The Arquillian configuration for these 4 adapters are provided via 4 Maven profiles.
+The [example codes](https://github.com/hantsy/jakartaee9-starter-boilerplate) are shared via my Github. There are 4 Maven profiles provided in the project *pom.xml* file for these 4 adapters.
 
 ## Prerequisites
 
