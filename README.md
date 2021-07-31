@@ -1,4 +1,4 @@
-# Jakarta EE 9 Starter Boilerplate(WIP)
+# Jakarta EE 9 Starter Boilerplate
 
 ![Compile and build](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/Build/badge.svg)
 
