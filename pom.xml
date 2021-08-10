@@ -91,7 +91,7 @@
         <tomee-maven-plugin.version>8.0.7</tomee-maven-plugin.version>
 
         <!-- Weld embedded-->
-        <arquillian-weld-embedded.version>3.0.0.Alpha2</arquillian-weld-embedded.version>
+        <arquillian-weld-embedded.version>3.0.0.Final</arquillian-weld-embedded.version>
         <weld.version>4.0.2.Final</weld.version>
 
         <!-- By default, skip tests -->
