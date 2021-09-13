@@ -35,7 +35,7 @@ jobs:
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
-          curl -o /tmp/ol.zip -L https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-02-09_1100/openliberty-21.0.0.3-beta.zip \
+          curl -o /tmp/ol.zip -L https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-08-24_2341/openliberty-21.0.0.10-beta.zip \
               && unzip /tmp/ol.zip -d ${INSTALL_DIR} \
               && rm /tmp/ol.zip \
               && true
