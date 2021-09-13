@@ -27,7 +27,7 @@ jobs:
       - name: Run WildFly server
         run: |
           export WF_ARCHIVE=wildfly-preview
-          export WF_VERSION=24.0.0.Final
+          export WF_VERSION=24.0.1.Final
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
