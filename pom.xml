@@ -86,7 +86,7 @@
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.4</liberty-maven-plugin.version>
         <!-- Jakarta EE 9 support see: https://github.com/OpenLiberty/liberty-arquillian/issues/71 -->
-        <arquillian-liberty-jakarta.version>2.0.0</arquillian-liberty-jakarta.version>
+        <arquillian-liberty-jakarta.version>2.0.1</arquillian-liberty-jakarta.version>
         <!-- OpenLiberty Jakarta 9 preview uses JBoss Resteasy as the Jaxrs provider. -->
         <!-- <cxf.version>3.3.5</cxf.version> -->
 
