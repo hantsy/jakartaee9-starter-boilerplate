@@ -71,7 +71,7 @@
         <wildfly.version>25.0.1.Final</wildfly.version>
         <wildfly-maven-plugin.version>2.1.0.Final</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>5.0.0.Alpha1</wildfly-arquillian.version>
-        <wildfly-jar-maven-plugin.version>6.1.1.Final</wildfly-jar-maven-plugin.version>
+        <wildfly-jar-maven-plugin.version>7.0.0.Final</wildfly-jar-maven-plugin.version>
         <openshift-maven-plugin.version>1.5.1</openshift-maven-plugin.version>
         <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
         <undertow-websockets-jsr.version>2.2.5.Final</undertow-websockets-jsr.version>
