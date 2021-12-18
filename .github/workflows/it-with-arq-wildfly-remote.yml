@@ -31,7 +31,7 @@ jobs:
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
-          curl -o /tmp/${WF_ARCHIVE}.zip -L https://download.jboss.org/wildfly/${WF_VERSION}/wildfly-preview-${WF_VERSION}.zip \
+          curl -o /tmp/${WF_ARCHIVE}.zip -L https://github.com/wildfly/wildfly/releases/download/${WF_VERSION}/wildfly-preview-${WF_VERSION}.zip \
               && unzip /tmp/${WF_ARCHIVE}.zip -d ${INSTALL_DIR} \
               && rm /tmp/${WF_ARCHIVE}.zip \
               && true
