@@ -12,7 +12,8 @@
         <configuration>
             <property name="managementAddress">127.0.0.1</property>
             <property name="managementPort">9990</property>
-            <property name="protocol">http-remoting</property>
+            <!-- since wildfly-arquillian 5.0.0 alpha2, the property protocol is deprecated and replaced by the property managementProtocol -->
+            <property name="managementProtocol">remote+http</property>
             <property name="username">admin</property>
             <property name="password">Admin@123</property>
         </configuration>

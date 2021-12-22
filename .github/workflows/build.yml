@@ -19,7 +19,7 @@ jobs:
       matrix:
         distribution: [ 'zulu', 'adopt' ]
         # test against latest update of each major Java version, as well as specific updates of LTS versions:
-        java: [11, 16]
+        java: [11, 17]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Java
