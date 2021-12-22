@@ -1756,6 +1756,19 @@
                     <version>${wildfly-arquillian.version}</version>
                     <scope>test</scope>
                 </dependency>
+                <!-- To fix 5.0.0.Alpha2 issue: https://github.com/wildfly/wildfly-arquillian/discussions/201#discussioncomment-1849214-->
+                <dependency>
+                    <groupId>org.jboss.remoting</groupId>
+                    <artifactId>jboss-remoting</artifactId>
+                    <version>5.0.23.Final</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.remotingjmx</groupId>
+                    <artifactId>remoting-jmx</artifactId>
+                    <version>3.0.4.Final</version>
+                    <scope>test</scope>
+                </dependency>
             </dependencies>
             <build>
                 <testResources>
@@ -1773,7 +1786,7 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-remote</arquillian.launch>
-                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <!-- <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager> -->
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
