@@ -59,7 +59,7 @@
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
 
         <!-- Glassfish server -->
-        <glassfish.version>6.2.3</glassfish.version>
+        <glassfish.version>6.2.4</glassfish.version>
         <arquillian-glassfish6.version>1.0.0.Alpha1</arquillian-glassfish6.version>
         <jersey.version>3.0.3</jersey.version>
 
