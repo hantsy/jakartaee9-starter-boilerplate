@@ -38,7 +38,7 @@
         <maven-surefire-report-plugin.version>3.0.0-M5</maven-surefire-report-plugin.version>
 
         <!-- Cargo maven plugin to deploy apps to Glassfish/Payara servers -->
-        <cargo-maven3-plugin.version>1.9.9</cargo-maven3-plugin.version>
+        <cargo-maven3-plugin.version>1.9.10</cargo-maven3-plugin.version>
 
         <!-- Jakarta EE API 9.1.0 adds Java 11 support-->
         <jakartaee-api.version>9.1.0</jakartaee-api.version>
