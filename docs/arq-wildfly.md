@@ -136,7 +136,7 @@ Adding the following `wildfly-arquillian-container-remote` dependency  instead.
     <version>${wildfly-arquillian.version}</version>
     <scope>test</scope>
 </dependency>
-// the jersey client depdenceies are omitted.
+// the jersey client dependencies are omitted.
 ```
 
 And add a *container* section in the *arquillian.xml* file for this remote container, and configure the essential properties, such as  `username`, `password`, `protocol`etc. 
