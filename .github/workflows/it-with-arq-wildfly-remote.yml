@@ -43,7 +43,7 @@ jobs:
           ${WF_HOME}/bin/standalone.sh -c standalone-full.xml &
           sleep 10
       - name: Cache Maven packages
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
