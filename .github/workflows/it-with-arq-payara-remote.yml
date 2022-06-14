@@ -27,7 +27,7 @@ jobs:
       - name: Run Payara server
         run: |
           export GLASSFISH_ARCHIVE=payara6
-          export GLASSFISH_VERSION=6.2021.1.Alpha1
+          export GLASSFISH_VERSION=6.2022.1.Alpha2
           export INSTALL_DIR="/opt/appsvr"
           mkdir ${INSTALL_DIR}
 
