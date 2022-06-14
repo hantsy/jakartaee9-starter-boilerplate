@@ -774,7 +774,7 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>io.openliberty.beta</groupId>
+                                            <groupId>io.openliberty</groupId>
                                             <artifactId>openliberty-jakartaee9</artifactId>
                                             <version>${liberty.runtime.version}</version>
                                             <type>zip</type>
@@ -814,7 +814,7 @@
                         <version>${liberty-maven-plugin.version}</version>
                         <configuration>
                             <runtimeArtifact>
-                                <groupId>io.openliberty.beta</groupId>
+                                <groupId>io.openliberty</groupId>
                                 <artifactId>openliberty-jakartaee9</artifactId>
                                 <version>${liberty.runtime.version}</version>
                             </runtimeArtifact>
@@ -1492,7 +1492,7 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>io.openliberty.beta</groupId>
+                                            <groupId>io.openliberty</groupId>
                                             <artifactId>openliberty-runtime</artifactId>
                                             <version>${liberty.runtime.version}</version>
                                             <type>zip</type>
