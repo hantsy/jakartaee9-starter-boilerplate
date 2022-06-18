@@ -1762,7 +1762,7 @@
                 <dependency>
                     <groupId>org.jboss.remoting</groupId>
                     <artifactId>jboss-remoting</artifactId>
-                    <version>5.0.24.Final</version>
+                    <version>5.0.25.Final</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
