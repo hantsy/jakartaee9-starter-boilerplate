@@ -86,7 +86,7 @@
         <liberty.runtime.version>22.0.0.6</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
-        <liberty-maven-plugin.version>3.6</liberty-maven-plugin.version>
+        <liberty-maven-plugin.version>3.6.1</liberty-maven-plugin.version>
         <!-- Jakarta EE 9 support see: https://github.com/OpenLiberty/liberty-arquillian/issues/71 -->
         <arquillian-liberty-jakarta.version>2.0.2</arquillian-liberty-jakarta.version>
         <!-- OpenLiberty Jakarta 9 preview uses JBoss Resteasy as the Jaxrs provider. -->
