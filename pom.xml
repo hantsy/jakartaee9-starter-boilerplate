@@ -98,7 +98,7 @@
 
         <!-- Weld embedded-->
         <arquillian-weld-embedded.version>3.0.2.Final</arquillian-weld-embedded.version>
-        <weld.version>4.0.3.Final</weld.version>
+        <weld.version>5.0.1.Final</weld.version>
 
         <!-- By default, skip tests -->
         <skip.unit.tests>true</skip.unit.tests>
