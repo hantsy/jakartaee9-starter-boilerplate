@@ -83,7 +83,7 @@
              since 22.0.0.6, openliberty is promoted from beta.
              see: https://openliberty.io/blog/2022/06/07/microprofile-graphql-2-22006.html
          -->       
-        <liberty.runtime.version>22.0.0.6</liberty.runtime.version>
+        <liberty.runtime.version>22.0.0.7</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
         <liberty-maven-plugin.version>3.6.1</liberty-maven-plugin.version>
