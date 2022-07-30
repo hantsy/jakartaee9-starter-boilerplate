@@ -69,7 +69,7 @@
 
         <!-- Wildfly server -->
         <wildfly.version>26.1.1.Final</wildfly.version>
-        <wildfly-maven-plugin.version>3.0.1.Final</wildfly-maven-plugin.version>
+        <wildfly-maven-plugin.version>3.0.2.Final</wildfly-maven-plugin.version>
         <wildfly-arquillian.version>5.0.0.Alpha3</wildfly-arquillian.version>
         <wildfly-jar-maven-plugin.version>7.0.2.Final</wildfly-jar-maven-plugin.version>
         <openshift-maven-plugin.version>1.8.0</openshift-maven-plugin.version>
