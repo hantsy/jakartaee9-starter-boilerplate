@@ -70,12 +70,12 @@
         <!-- Wildfly server -->
         <wildfly.version>26.1.1.Final</wildfly.version>
         <wildfly-maven-plugin.version>3.0.2.Final</wildfly-maven-plugin.version>
-        <wildfly-arquillian.version>5.0.0.Alpha3</wildfly-arquillian.version>
+        <wildfly-arquillian.version>4.0.0.Alpha5</wildfly-arquillian.version>
         <wildfly-jar-maven-plugin.version>7.0.2.Final</wildfly-jar-maven-plugin.version>
         <openshift-maven-plugin.version>1.8.0</openshift-maven-plugin.version>
         <!-- websockets-jsr and resteasy for client, aligned with Wildfly version. -->
-        <undertow-websockets-jsr.version>2.2.5.Final</undertow-websockets-jsr.version>
-        <resteasy.version>3.15.1.Final</resteasy.version>
+        <undertow-websockets-jsr.version>2.2.17.Final</undertow-websockets-jsr.version>
+        <resteasy.version>6.0.1.Final</resteasy.version>
 
         <!-- OpenLiberty server -->
         <!-- since 21.0.0.11-beta, use jakartaee-9.1 instead of 9.0, 
@@ -1617,7 +1617,7 @@
                 <!-- JAXRS test need the dependency:resteasy-client -->
                 <!-- Import the RestEasy Client and jackson2/json-binding/json-p provider, we use test scope
                     as we need that for test purposes -->
-                <!--<dependency>
+                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
                     <version>${resteasy.version}</version>
@@ -1628,10 +1628,10 @@
                     <artifactId>resteasy-jackson2-provider</artifactId>
                     <version>${resteasy.version}</version>
                     <scope>test</scope>
-                </dependency>-->
+                </dependency>
 
                 <!-- use Jersey client instead -->
-                <dependency>
+                <!--<dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-json-binding</artifactId>
                     <version>${jersey.version}</version>
@@ -1648,7 +1648,7 @@
                     <artifactId>jersey-client</artifactId>
                     <version>${jersey.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
@@ -1720,7 +1720,7 @@
                 <skip.integration.tests>false</skip.integration.tests>
             </properties>
             <dependencies>
-                <!--<dependency>
+                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
                     <version>${resteasy.version}</version>
@@ -1731,9 +1731,9 @@
                     <artifactId>resteasy-jackson2-provider</artifactId>
                     <version>${resteasy.version}</version>
                     <scope>test</scope>
-                </dependency>-->
+                </dependency>
                 <!-- use Jersey client instead -->
-                <dependency>
+                <!--<dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-json-binding</artifactId>
                     <version>${jersey.version}</version>
@@ -1750,7 +1750,7 @@
                     <artifactId>jersey-client</artifactId>
                     <version>${jersey.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
 
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
@@ -1805,7 +1805,7 @@
                 <skip.integration.tests>false</skip.integration.tests>
             </properties>
             <dependencies>
-                <!--<dependency>
+                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
                     <version>${resteasy.version}</version>
@@ -1816,9 +1816,9 @@
                     <artifactId>resteasy-jackson2-provider</artifactId>
                     <version>${resteasy.version}</version>
                     <scope>test</scope>
-                </dependency>-->
+                </dependency>
                 <!-- use Jersey client instead -->
-                <dependency>
+                <!--<dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-json-binding</artifactId>
                     <version>${jersey.version}</version>
@@ -1835,7 +1835,7 @@
                     <artifactId>jersey-client</artifactId>
                     <version>${jersey.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
 
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
