@@ -1905,7 +1905,7 @@
                 <skip.integration.tests>false</skip.integration.tests>
             </properties>
             <dependencies>
-                <!--<dependency>
+                <dependency>
                     <groupId>org.jboss.resteasy</groupId>
                     <artifactId>resteasy-client</artifactId>
                     <version>${resteasy.version}</version>
@@ -1916,9 +1916,9 @@
                     <artifactId>resteasy-jackson2-provider</artifactId>
                     <version>${resteasy.version}</version>
                     <scope>test</scope>
-                </dependency>-->
+                </dependency>
                 <!-- use Jersey client instead -->
-                <dependency>
+               <!-- <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-json-binding</artifactId>
                     <version>${jersey.version}</version>
@@ -1935,7 +1935,7 @@
                     <artifactId>jersey-client</artifactId>
                     <version>${jersey.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency>-->
 
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
