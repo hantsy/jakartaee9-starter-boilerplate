@@ -45,7 +45,7 @@
 
         <!-- Arquillian 1.7.0 adds Jakarta EE 9 and JUnit 5 support-->
         <arquillian-bom.version>1.7.0.Alpha12</arquillian-bom.version>
-        <junit-jupiter.version>5.9.0</junit-jupiter.version>
+        <junit-jupiter.version>5.9.1</junit-jupiter.version>
 
         <!-- Test Utilities -->
         <mockito.version>4.6.1</mockito.version>
