@@ -82,7 +82,7 @@
              see: https://github.com/OpenLiberty/open-liberty/issues/18822#issuecomment-932164174 
              since 22.0.0.6, openliberty is promoted from beta.
              see: https://openliberty.io/blog/2022/06/07/microprofile-graphql-2-22006.html
-         -->       
+         -->
         <liberty.runtime.version>22.0.0.10</liberty.runtime.version>
         <!-- WARNING: 10.15.x.x does not work with openliberty 20.0.0.1 -->
         <derby.version>10.14.2.0</derby.version>
@@ -95,6 +95,7 @@
         <!-- TODO: Apache Tomee -->
         <tomee.version>9.0.0.RC1</tomee.version>
         <tomee-maven-plugin.version>9.0.0.RC1</tomee-maven-plugin.version>
+        <arquillian-tomee.version>9.0.0.RC1</arquillian-tomee.version>
 
         <!-- Weld embedded-->
         <arquillian-weld-embedded.version>3.0.2.Final</arquillian-weld-embedded.version>
@@ -1228,13 +1229,13 @@
                 <skip.unit.tests>true</skip.unit.tests>
                 <skip.integration.tests>false</skip.integration.tests>
             </properties>
-            <dependencies>  
+            <dependencies>
                 <dependency>
                     <groupId>fish.payara.arquillian</groupId>
                     <artifactId>payara-client-ee9</artifactId>
                     <version>${arquillian-payara.version}</version>
                     <scope>test</scope>
-                </dependency>     
+                </dependency>
                 <dependency>
                     <groupId>fish.payara.extras</groupId>
                     <artifactId>payara-embedded-all</artifactId>
@@ -1924,24 +1925,24 @@
                     <scope>test</scope>
                 </dependency>
                 <!-- use Jersey client instead -->
-               <!-- <dependency>
-                    <groupId>org.glassfish.jersey.media</groupId>
-                    <artifactId>jersey-media-json-binding</artifactId>
-                    <version>${jersey.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.inject</groupId>
-                    <artifactId>jersey-hk2</artifactId>
-                    <version>${jersey.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish.jersey.core</groupId>
-                    <artifactId>jersey-client</artifactId>
-                    <version>${jersey.version}</version>
-                    <scope>test</scope>
-                </dependency>-->
+                <!-- <dependency>
+                     <groupId>org.glassfish.jersey.media</groupId>
+                     <artifactId>jersey-media-json-binding</artifactId>
+                     <version>${jersey.version}</version>
+                     <scope>test</scope>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.glassfish.jersey.inject</groupId>
+                     <artifactId>jersey-hk2</artifactId>
+                     <version>${jersey.version}</version>
+                     <scope>test</scope>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.glassfish.jersey.core</groupId>
+                     <artifactId>jersey-client</artifactId>
+                     <version>${jersey.version}</version>
+                     <scope>test</scope>
+                 </dependency>-->
 
                 <dependency>
                     <groupId>org.wildfly.arquillian</groupId>
@@ -2002,6 +2003,68 @@
                 </plugins>
             </build>
         </profile>
+
+        <profile>
+            <id>arq-tomee-embedded</id>
+            <properties>
+                <skip.unit.tests>true</skip.unit.tests>
+                <skip.integration.tests>false</skip.integration.tests>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.tomee</groupId>
+                    <artifactId>arquillian-tomee-embedded</artifactId>
+                    <version>${arquillian-tomee.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.tomee</groupId>
+                    <artifactId>tomee-webservices</artifactId>
+                    <version>${tomee.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.tomee</groupId>
+                    <artifactId>tomee-jaxrs</artifactId>
+                    <version>${tomee.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>arq-tomee-remote</id>
+            <properties>
+                <tomee.classifier>plus</tomee.classifier>
+                <skip.unit.tests>true</skip.unit.tests>
+                <skip.integration.tests>false</skip.integration.tests>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <tomee.classifier>${tomee.classifier}</tomee.classifier>
+                                <tomee.version>${tomee.version}</tomee.version>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.tomee</groupId>
+                    <artifactId>arquillian-tomee-remote</artifactId>
+                    <version>${arquillian-tomee.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.tomee</groupId>
+                    <artifactId>apache-tomee</artifactId>
+                    <version>${tomee.version}</version>
+                    <classifier>${tomee.classifier}</classifier>
+                    <type>zip</type>
+                </dependency>
+            </dependencies>
+        </profile>
+
     </profiles>
     <reporting>
         <plugins>
