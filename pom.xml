@@ -44,7 +44,7 @@
         <jakartaee-api.version>9.1.0</jakartaee-api.version>
 
         <!-- Arquillian 1.7.0 adds Jakarta EE 9 and JUnit 5 support-->
-        <arquillian-bom.version>1.7.0.Alpha12</arquillian-bom.version>
+        <arquillian-bom.version>1.7.0.Alpha13</arquillian-bom.version>
         <junit-jupiter.version>5.9.1</junit-jupiter.version>
 
         <!-- Test Utilities -->
@@ -2015,16 +2015,19 @@
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>arquillian-tomee-embedded</artifactId>
                     <version>${arquillian-tomee.version}</version>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-webservices</artifactId>
                     <version>${tomee.version}</version>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-jaxrs</artifactId>
                     <version>${tomee.version}</version>
+                    <scope>test</scope>
                 </dependency>
             </dependencies>
         </profile>
@@ -2054,6 +2057,7 @@
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>arquillian-tomee-remote</artifactId>
                     <version>${arquillian-tomee.version}</version>
+                    <scope>test</scope>
                 </dependency>
                 <dependency>
                     <groupId>org.apache.tomee</groupId>
