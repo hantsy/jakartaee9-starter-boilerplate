@@ -23,6 +23,9 @@
 ![Integration Test with Arquillian Payara Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-payara-embedded/badge.svg)
 ![Integration Test with Arquillian Payara Micro Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-payara-micro/badge.svg)
 
+![Arquillain Integration Test with TomEE Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-tomee-remote/badge.svg)
+![Arquillain Integration Test with TomEE Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-tomee-embedded/badge.svg)
+
 ## What's this?
 
 The goal of [Jakarta EE 9 Starter Boilerplate](https://github.com/hantsy/jakartaee9-starter-boilerplate) is providing a simple template to help developers to start a workable and testable Jakarta EE 9 project in seconds. And it also includes my personal development notes when migrating to Jakarta EE 9 platform.
