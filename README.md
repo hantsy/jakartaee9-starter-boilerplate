@@ -1,27 +1,46 @@
 # Jakarta EE 9 Starter Boilerplate
 
+Build: 
+
 ![Compile and build](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/Build/badge.svg)
+
+Unit Test:
 
 ![Unit Test](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/unit-test/badge.svg)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=hantsy_jakartaee9-starter-boilerplate&metric=alert_status)](https://sonarcloud.io/dashboard?id=hantsy_jakartaee9-starter-boilerplate)
 
+Weld:
+
 ![Arquillain Integration Test with Weld Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-weld/badge.svg)
+
+Glassfish:
 
 ![Arquillain Integration Test with Glassfish Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-managed/badge.svg)
 ![Arquillain Integration Test with Glassfish Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-glassfish-remote/badge.svg)
 
+OpenLiberty:
+
 ![Arquillain Integration Test with OpenLiberty Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-managed/badge.svg)
 ![Arquillain Integration Test with OpenLiberty Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-liberty-remote/badge.svg)
+
+WildFly:
 
 ![Arquillain Integration Test with WildFly Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-managed/badge.svg)
 ![Arquillain Integration Test with WildFly Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-remote/badge.svg)
 ![Arquillain Integration Test with WildFly Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-embedded/badge.svg)
 ![Arquillain Integration Test with WildFly Bootable  Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-wildfly-bootable-jar/badge.svg)
 
+Payara:[Payara 6.2022.1 Final supports Jakarta EE 10, there is no a stable version for Jakarta EE 9/9.1. If you are a Payara user, stay on Payara 5/JakartaEE 8 or upgrade Payara 6/JakartaEE 10]
+
 ![Integration Test with Arquillian Payara Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-payara-remote/badge.svg)
 ![Integration Test with Arquillian Payara Managed Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-payara-managed/badge.svg)
 ![Integration Test with Arquillian Payara Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-payara-embedded/badge.svg)
 ![Integration Test with Arquillian Payara Micro Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-payara-micro/badge.svg)
+
+Apache TomEE:
+
+![Arquillain Integration Test with TomEE Remote Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-tomee-remote/badge.svg)
+![Arquillain Integration Test with TomEE Embedded Container](https://github.com/hantsy/jakartaee9-starter-boilerplate/workflows/it-with-arq-tomee-embedded/badge.svg)
 
 ## What's this?
 
