@@ -2028,10 +2028,9 @@
                     <version>${tomee.version}</version>
                     <scope>test</scope>
                 </dependency>
-                <!-- https://mvnrepository.com/artifact/org.apache.tomee/tomee-myfaces -->
                 <dependency>
                       <groupId>org.apache.tomee</groupId>
-                      <artifactId>tomee-myfaces</artifactId>
+                      <artifactId>tomee-mojarra</artifactId>
                       <version>${tomee.version}</version>
                     <scope>test</scope>
                 </dependency>
