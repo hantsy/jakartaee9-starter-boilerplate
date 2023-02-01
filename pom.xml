@@ -93,8 +93,8 @@
         <!-- <cxf.version>3.3.5</cxf.version> -->
 
         <!-- TODO: Apache Tomee -->
-        <tomee.version>9.0.0.RC1</tomee.version>
-        <tomee-maven-plugin.version>9.0.0.RC1</tomee-maven-plugin.version>
+        <tomee.version>9.0.0</tomee.version>
+        <tomee-maven-plugin.version>9.0.0</tomee-maven-plugin.version>
         <arquillian-tomee.version>9.0.0</arquillian-tomee.version>
 
         <!-- Weld embedded-->
@@ -2027,6 +2027,13 @@
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-jaxrs</artifactId>
                     <version>${tomee.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <!-- https://mvnrepository.com/artifact/org.apache.tomee/tomee-myfaces -->
+                <dependency>
+                      <groupId>org.apache.tomee</groupId>
+                      <artifactId>tomee-myfaces</artifactId>
+                      <version>${tomee.version}</version>
                     <scope>test</scope>
                 </dependency>
 
