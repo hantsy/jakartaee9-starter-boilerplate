@@ -846,7 +846,7 @@
                                 <configuration>
                                     <artifactItems>
                                         <artifactItem>
-                                            <groupId>org.apache.tomee.jakarta</groupId>
+                                            <groupId>org.apache.tomee</groupId>
                                             <artifactId>apache-tomee</artifactId>
                                             <version>${tomee.version}</version>
                                             <classifier>plume</classifier>
@@ -929,8 +929,7 @@
                             <tomeeVersion>${tomee.version}</tomeeVersion>
                             <tomeeArtifactId>apache-tomee</tomeeArtifactId>
 
-                            <!-- Note: TomEE 9 use the new groupId: org.apache.tomee.jakarta -->
-                            <tomeeGroupId>org.apache.tomee.jakarta</tomeeGroupId>
+                            <tomeeGroupId>org.apache.tomee</tomeeGroupId>
                             <tomeeClassifier>plume</tomeeClassifier>
 
                             <!-- Config for remote deployment to a running server -->
