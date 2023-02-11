@@ -2056,6 +2056,13 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>jakarta.el</artifactId>
+                    <version>4.0.2</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-mojarra</artifactId>
                     <version>${tomee.version}</version>
