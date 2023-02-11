@@ -2061,13 +2061,19 @@
                     <version>4.0.2</version>
                     <scope>test</scope>
                 </dependency>
-
+                <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-websocket -->
                 <dependency>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-websocket</artifactId>
+                    <version>10.1.5</version>
+                </dependency>
+
+                <!-- <dependency>
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-mojarra</artifactId>
                     <version>${tomee.version}</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency> -->
                 <dependency>
                     <groupId>org.glassfish</groupId>
                     <artifactId>jakarta.faces</artifactId>
