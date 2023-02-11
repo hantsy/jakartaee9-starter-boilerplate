@@ -2062,7 +2062,7 @@
                     <scope>test</scope>
                 </dependency>
 
-                <dependency>
+                <!-- <dependency>
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-mojarra</artifactId>
                     <version>${tomee.version}</version>
@@ -2073,7 +2073,7 @@
                     <artifactId>jakarta.faces</artifactId>
                     <version>3.0.4</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency> -->
 
                 <!-- jaxrs client support -->
                 <dependency>
