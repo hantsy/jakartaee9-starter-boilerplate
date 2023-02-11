@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
@@ -16,11 +16,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <!--Glassfish v6.1+, Java 11 is supported -->
+        <!--Glassfish
+        v6.1+, Java 11 is supported -->
         <maven.compiler.release>11</maven.compiler.release>
 
-        <!--Glassfish v6.0.x requires Java 8-->
-        <!--NOTE:The `maven.compiler.release` property is not available when using Java 8-->
+        <!--Glassfish
+        v6.0.x requires Java 8-->
+        <!--NOTE:The
+        `maven.compiler.release` property is not available when using Java 8-->
         <!--
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -78,8 +81,8 @@
         <resteasy.version>6.0.1.Final</resteasy.version>
 
         <!-- OpenLiberty server -->
-        <!-- since 21.0.0.11-beta, use jakartaee-9.1 instead of 9.0, 
-             see: https://github.com/OpenLiberty/open-liberty/issues/18822#issuecomment-932164174 
+        <!-- since 21.0.0.11-beta, use jakartaee-9.1 instead of 9.0,
+             see: https://github.com/OpenLiberty/open-liberty/issues/18822#issuecomment-932164174
              since 22.0.0.6, openliberty is promoted from beta.
              see: https://openliberty.io/blog/2022/06/07/microprofile-graphql-2-22006.html
          -->
@@ -635,15 +638,19 @@
                 <plugins>
                     <!-- The WildFly plugin deploys your war to a local running WildFly container -->
                     <!-- To use, run: mvn package wildfly:deploy -->
-                    <!-- For Jakarta EE 9, use `wildfly-preview-dist` as artifactId instead to start and deploy applications-->
-                    <!-- Run: mvn clean wildfly:run -PWildfly -Dwildfly.artifactId=wildfly-preview-dist -Dwildfly.version=22.0.0.Alpha1 -->
-                    <!-- or set the `jboss-as.home` to run: mvn clean wildfly:run -PWildfly -Djboss-as.home=D:\appsvr\wildfly-preview-22.0.0.Alpha1-->
+                    <!-- For Jakarta EE 9, use `wildfly-preview-dist` as artifactId instead to start
+                    and deploy applications-->
+                    <!-- Run: mvn clean wildfly:run -PWildfly
+                    -Dwildfly.artifactId=wildfly-preview-dist -Dwildfly.version=22.0.0.Alpha1 -->
+                    <!-- or set the `jboss-as.home` to run: mvn clean wildfly:run -PWildfly
+                    -Djboss-as.home=D:\appsvr\wildfly-preview-22.0.0.Alpha1-->
                     <plugin>
                         <groupId>org.wildfly.plugins</groupId>
                         <artifactId>wildfly-maven-plugin</artifactId>
                         <version>${wildfly-maven-plugin.version}</version>
                         <configuration>
-                            <!-- if a jboss-as.home or jboss.home property is not present, firstly it will download
+                            <!-- if a jboss-as.home or jboss.home property is not present, firstly
+                            it will download
                             a copy of wildfly distribution automatically -->
                             <!-- <jossHome>${env.WILDFLY_HOME}</jbossHome>-->
                             <!--<jbossHome>D:\appsvr\wildfly-preview-22.0.0.Alpha1</jbossHome>-->
@@ -713,7 +720,7 @@
                             <excluded-layers>
                                 <layer>deployment-scanner</layer>
                             </excluded-layers>
-                            <cloud/>
+                            <cloud />
                             <plugin-options>
                                 <jboss-fork-embedded>true</jboss-fork-embedded>
                             </plugin-options>
@@ -753,11 +760,14 @@
         </profile>
         <profile>
             <id>openliberty</id>
-            <!-- Use the following command to start and deploy applications to a `pre-existing` OpenLiberty beta -->
+            <!-- Use the following command to start and deploy applications to a `pre-existing`
+            OpenLiberty beta -->
             <!-- mvn clean package liberty:start liberty:deploy -Popenliberty-->
 
-            <!-- Note: the `liberty:run` goal will clean the server in the `/target` folder automatically. -->
-            <!-- Use this command to create a OpenLiberty server from scratch and deploy the applications to it -->
+            <!-- Note: the `liberty:run` goal will clean the server in the `/target` folder
+            automatically. -->
+            <!-- Use this command to create a OpenLiberty server from scratch and deploy the
+            applications to it -->
             <!-- mvn clean liberty:create package liberty:deploy -Popenliberty-->
             <build>
                 <plugins>
@@ -923,7 +933,8 @@
                         <configuration>
                             <path>/</path>
                             <!-- Apache TomeEE runtime instance -->
-                            <!-- <catalinaBase>${project.build.directory}/apache-tomee</catalinaBase>-->
+                            <!--
+                            <catalinaBase>${project.build.directory}/apache-tomee</catalinaBase>-->
 
                             <!-- download and run on a managed Apache TomEE server -->
                             <tomeeVersion>${tomee.version}</tomeeVersion>
@@ -1438,7 +1449,9 @@
                     <artifactId>arquillian-liberty-managed-jakarta</artifactId>
                     <version>${arquillian-liberty-jakarta.version}</version>
                 </dependency>
-                <!--It seems OpenLiberty 21.0.0.1 beta switched to use Resteasy as Jakarta Restful WS provider.
+                <!--It
+                seems OpenLiberty 21.0.0.1 beta switched to use Resteasy as Jakarta Restful WS
+                provider.
                 But there is no official public version for Jakarta EE 9 in the Maven central repository.
                 Use Jersey Client in the test codes here.-->
 
@@ -1529,7 +1542,8 @@
                             </environmentVariables>
                             <systemPropertyVariables>
                                 <arquillian.launch>liberty-managed</arquillian.launch>
-                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
+                                <java.util.logging.config.file>
+                                    ${project.build.testOutputDirectory}/logging.properties
                                 </java.util.logging.config.file>
                             </systemPropertyVariables>
                         </configuration>
@@ -1589,7 +1603,8 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <arquillian.launch>liberty-remote</arquillian.launch>
-                                <java.util.logging.config.file>${project.build.testOutputDirectory}/logging.properties
+                                <java.util.logging.config.file>
+                                    ${project.build.testOutputDirectory}/logging.properties
                                 </java.util.logging.config.file>
                             </systemPropertyVariables>
                         </configuration>
@@ -1621,7 +1636,8 @@
 
                 <!-- TESTS -->
                 <!-- JAXRS test need the dependency:resteasy-client -->
-                <!-- Import the RestEasy Client and jackson2/json-binding/json-p provider, we use test scope
+                <!-- Import the RestEasy Client and jackson2/json-binding/json-p provider, we use
+                test scope
                     as we need that for test purposes -->
                 <dependency>
                     <groupId>org.jboss.resteasy</groupId>
@@ -1704,7 +1720,8 @@
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
                             <environmentVariables>
-                                <JBOSS_HOME>${project.build.directory}/wildfly-preview-${wildfly.version}</JBOSS_HOME>
+                                <JBOSS_HOME>
+                                    ${project.build.directory}/wildfly-preview-${wildfly.version}</JBOSS_HOME>
                             </environmentVariables>
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-managed</arquillian.launch>
@@ -1764,7 +1781,8 @@
                     <version>${wildfly-arquillian.version}</version>
                     <scope>test</scope>
                 </dependency>
-                <!-- To fix 5.0.0.Alpha2 issue: https://github.com/wildfly/wildfly-arquillian/discussions/201#discussioncomment-1849214-->
+                <!-- To fix 5.0.0.Alpha2 issue:
+                https://github.com/wildfly/wildfly-arquillian/discussions/201#discussioncomment-1849214-->
                 <dependency>
                     <groupId>org.jboss.remoting</groupId>
                     <artifactId>jboss-remoting</artifactId>
@@ -1794,7 +1812,8 @@
                         <configuration>
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-remote</arquillian.launch>
-                                <!-- <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager> -->
+                                <!--
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager> -->
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -1891,7 +1910,8 @@
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
                             <environmentVariables>
-                                <JBOSS_HOME>${project.build.directory}/wildfly-preview-${wildfly.version}</JBOSS_HOME>
+                                <JBOSS_HOME>
+                                    ${project.build.directory}/wildfly-preview-${wildfly.version}</JBOSS_HOME>
                             </environmentVariables>
                             <systemPropertyVariables>
                                 <arquillian.launch>wildfly-embedded</arquillian.launch>
@@ -1992,7 +2012,8 @@
                         <version>${maven-failsafe-plugin.version}</version>
                         <configuration>
                             <systemPropertyVariables>
-                                <bootable.jar>${project.build.directory}/${project.artifactId}-bootable.jar
+                                <bootable.jar>
+                                    ${project.build.directory}/${project.artifactId}-bootable.jar
                                 </bootable.jar>
                                 <arquillian.launch>wildfly-bootable-jar</arquillian.launch>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
@@ -2017,21 +2038,21 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
+                    <groupId>org.apache.tomee</groupId>
+                    <artifactId>tomee-embedded</artifactId>
+                    <version>${tomee.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <!-- <dependency>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
                     <version>4.13.2</version>
                     <scope>test</scope>
-                </dependency>
+                </dependency> -->
                 <dependency>
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-jaxrs</artifactId>
                     <version>${tomee.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                      <groupId>org.apache.tomee</groupId>
-                      <artifactId>tomee-mojarra</artifactId>
-                      <version>${tomee.version}</version>
                     <scope>test</scope>
                 </dependency>
 
