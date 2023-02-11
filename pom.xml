@@ -2042,7 +2042,14 @@
                     <artifactId>tomee-embedded</artifactId>
                     <version>${tomee.version}</version>
                     <scope>test</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.apache.tomee</groupId>
+                            <artifactId>tomee-myfaces</artifactId>
+                        </exclusion>
+                    </exclusions>
                 </dependency>
+
                 <dependency>
                     <groupId>junit</groupId>
                     <artifactId>junit</artifactId>
@@ -2053,12 +2060,6 @@
                     <groupId>org.apache.tomee</groupId>
                     <artifactId>tomee-jaxrs</artifactId>
                     <version>${tomee.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.glassfish</groupId>
-                    <artifactId>jakarta.el</artifactId>
-                    <version>4.0.2</version>
                     <scope>test</scope>
                 </dependency>
 
