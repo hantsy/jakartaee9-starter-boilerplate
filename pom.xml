@@ -2055,9 +2055,15 @@
                     <version>${tomee.version}</version>
                     <scope>test</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.apache.tomee</groupId>
+                    <artifactId>tomee-mojarra</artifactId>
+                    <version>${tomee.version}</version>
+                    <scope>test</scope>
+                </dependency>
 
                 <!-- jaxrs client support -->
-                <!-- <dependency>
+                <dependency>
                     <groupId>org.glassfish.jersey.media</groupId>
                     <artifactId>jersey-media-json-binding</artifactId>
                     <version>${jersey.version}</version>
@@ -2074,7 +2080,7 @@
                     <artifactId>jersey-client</artifactId>
                     <version>${jersey.version}</version>
                     <scope>test</scope>
-                </dependency> -->
+                </dependency>
             </dependencies>
         </profile>
         <profile>
