@@ -67,7 +67,7 @@
         <jersey.version>3.0.8</jersey.version>
 
         <!-- Payara server -->
-        <payara.version>6.2023.1</payara.version>
+        <payara.version>6.2023.3</payara.version>
         <arquillian-payara.version>3.0.alpha8</arquillian-payara.version>
 
         <!-- Wildfly server -->
