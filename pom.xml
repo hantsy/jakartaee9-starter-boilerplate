@@ -51,7 +51,7 @@
         <junit-jupiter.version>5.9.3</junit-jupiter.version>
 
         <!-- Test Utilities -->
-        <mockito.version>5.2.0</mockito.version>
+        <mockito.version>5.4.0</mockito.version>
         <json-path.version>2.7.0</json-path.version>
         <awaitility.version>4.2.0</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
