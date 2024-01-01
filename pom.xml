@@ -98,7 +98,7 @@
         <!-- TODO: Apache Tomee -->
         <tomee.version>9.1.1</tomee.version>
         <tomee-maven-plugin.version>9.1.1</tomee-maven-plugin.version>
-        <arquillian-tomee.version>9.1.1</arquillian-tomee.version>
+        <arquillian-tomee.version>9.1.2</arquillian-tomee.version>
 
         <!-- Weld embedded-->
         <arquillian-weld-embedded.version>3.0.2.Final</arquillian-weld-embedded.version>
