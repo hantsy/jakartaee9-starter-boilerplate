@@ -1792,7 +1792,7 @@
                 <dependency>
                     <groupId>org.jboss.remotingjmx</groupId>
                     <artifactId>remoting-jmx</artifactId>
-                    <version>3.0.4.Final</version>
+                    <version>3.1.0.Final</version>
                     <scope>test</scope>
                 </dependency>
             </dependencies>
