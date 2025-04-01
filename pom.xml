@@ -55,7 +55,7 @@
         <json-path.version>2.9.0</json-path.version>
         <awaitility.version>4.3.0</awaitility.version>
         <hamcrest.version>2.2</hamcrest.version>
-        <jsonassert.version>1.5.1</jsonassert.version>
+        <jsonassert.version>1.5.3</jsonassert.version>
         <assertj.version>3.27.3</assertj.version>
 
         <!-- Jacoco code coverage report -->
