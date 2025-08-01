@@ -38,7 +38,7 @@
         <maven-dependency-plugin.version>3.8.1</maven-dependency-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.5.3</maven-failsafe-plugin.version>
-        <maven-surefire-report-plugin.version>3.2.5</maven-surefire-report-plugin.version>
+        <maven-surefire-report-plugin.version>3.5.3</maven-surefire-report-plugin.version>
 
         <!-- Cargo maven plugin to deploy apps to Glassfish/Payara servers -->
         <cargo-maven3-plugin.version>1.10.18</cargo-maven3-plugin.version>
