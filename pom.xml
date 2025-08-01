@@ -59,7 +59,7 @@
         <assertj.version>3.27.3</assertj.version>
 
         <!-- Jacoco code coverage report -->
-        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
 
         <!-- Glassfish server -->
         <glassfish.version>6.2.5</glassfish.version>
